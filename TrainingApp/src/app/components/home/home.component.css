@@ -1,0 +1,9 @@
+.home-container{
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+.home-content{
+    font-size: 20px;
+}
