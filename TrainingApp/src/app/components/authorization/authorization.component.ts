@@ -10,4 +10,7 @@ import { Component } from '@angular/core';
 export class AuthorizationComponent {
   public email: string = "";
   public password: string = "";
+  public redirect(): void{
+    document.location.href=""
+  }
 }
