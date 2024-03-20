@@ -11,6 +11,6 @@ export class AuthorizationComponent {
   public email: string = "";
   public password: string = "";
   public redirect(): void{
-    document.location.href=""
+    document.location.href="/home"
   }
 }

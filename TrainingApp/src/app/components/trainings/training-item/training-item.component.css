@@ -1,0 +1,32 @@
+.training-container{
+    display: block;
+    margin: 0 10px;
+    width: 250px;
+    height: 300px;
+    border: 1px solid black;
+    box-shadow: 5px 1px 5px black;
+}
+.training-container:hover{
+    cursor: pointer;
+    box-shadow: 6px 2px 6px black;
+}
+.training-header{
+    font-size: 20px
+}
+.training-tags{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    list-style: none;
+}
+.training-item{
+    margin-right: 10px;
+}
+.training-img{
+    width: 250px;
+    height: 250px;
+}
+.tag-img{
+    width:20px;
+    height: 20px;
+}

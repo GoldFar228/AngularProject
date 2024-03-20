@@ -10,9 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
   public header: {value: string, path: string}[] = [
-    {value: "Home", path:""}, 
+    {value: "Home", path:"/home"}, 
     {value: "Trainings", path:"/trainings"}, 
     {value: "Diets", path: "/diets"}, 
     {value: "Profile", path: "/profile"}, 
-    {value: "Log out", path: "/login"}];
+    {value: "Log out", path: ""}];
+  public loggedIn: boolean = true;
 }

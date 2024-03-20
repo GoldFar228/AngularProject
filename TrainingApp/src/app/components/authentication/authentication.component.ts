@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AuthenticationComponent {
   public redirect(): void{
-    document.location.href=""
+    document.location.href="/home"
   }
 }
