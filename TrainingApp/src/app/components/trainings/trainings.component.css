@@ -1,10 +1,3 @@
 .trainings{
     display: flex;
 }
-.filter-list{
-    display: flex;
-}
-.filter-item{
-    margin: 20px 10px 20px 20px;
-    list-style: none;
-}
