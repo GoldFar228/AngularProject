@@ -3,5 +3,5 @@
 
 
 <div class="trainings" *ngFor="let t of trainings">
-    <app-training-item *ngIf="searchString === '' || t.header.includes(searchString)" [training]="t"></app-training-item>
+    <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t"></app-training-item>
 </div>

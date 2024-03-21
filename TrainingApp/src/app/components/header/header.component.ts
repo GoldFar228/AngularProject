@@ -15,5 +15,8 @@ export class HeaderComponent {
     {value: "Diets", path: "/diets"}, 
     {value: "Profile", path: "/profile"}, 
     {value: "Log out", path: ""}];
-  public loggedIn: boolean = true;
+  //public loggedIn: boolean = true; TODO: Сделать так, чтобы при входе, в шапке менялся "Log in" на "Log out" и наоборот
+  public redirect(): void{
+    document.location.href="/home"
+  }
 }
