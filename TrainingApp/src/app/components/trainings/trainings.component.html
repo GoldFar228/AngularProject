@@ -1,7 +1,8 @@
 
 <app-filters (searchTextChange)="setSearchString($event)"></app-filters>
 
-
-<div class="trainings" *ngFor="let t of trainings">
-    <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t"></app-training-item>
+<div class="trainings">
+    <ng-container *ngFor="let t of trainings">
+        <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t"></app-training-item>
+    </ng-container>
 </div>

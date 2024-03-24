@@ -4,8 +4,7 @@
     background-color: black;
 }
 .header-logo{
-    position: fixed;
-    left: 0;
+    margin-right: auto;
 }
 .header-logo:hover{
     cursor: pointer;

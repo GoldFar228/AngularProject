@@ -1,9 +1,9 @@
 <div>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         Log in your account<br>
-        <input type="text" placeholder="E-mail"> <br>
-        <input type="text" placeholder="Password"><br>
-        <input type="button" value="Log in" (click)="redirect()">
+        <input type="email" formControlName="email" placeholder="E-mail"> <br>
+        <input type="password" formControlName="password" placeholder="Password"><br>
+        <button type="submit">Login</button>
         <div class="registration"><a href="registration">Create account</a></div>
     </form>
 </div>

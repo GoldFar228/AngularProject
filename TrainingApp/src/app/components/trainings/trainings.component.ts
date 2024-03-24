@@ -33,6 +33,6 @@ export class TrainingsComponent {
 
   setSearchString(e: string): void{
     this.searchString = e;
-    console.log(this.searchString)
+    console.log(this.searchString);
   }
 }

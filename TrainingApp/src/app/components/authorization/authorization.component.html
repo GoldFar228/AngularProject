@@ -1,9 +1,10 @@
 <div>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         Create new account<br>
-        <input type="text" placeholder="E-mail"> <br>
-        <input type="text" placeholder="Password"><br>
-        <input type="text" placeholder="Age"> <br>
+        <input type="text" placeholder="Username" formControlName="username"> <br>
+        <input type="text" placeholder="E-mail" formControlName="email"> <br>
+        <input type="password" placeholder="Password" formControlName="password"><br>
+        <!-- <input type="text" placeholder="Age"> <br>
         <input type="text" placeholder="Height"><br>
         <input type="text" placeholder="Weight"> <br>
         <select>
@@ -12,8 +13,8 @@
             <option value="Loose fat">Loose fat</option>
             <option value="Get stronger">Get stronger</option>
             <option value="Learn technics">Learn technics</option>
-        </select><br>
-        <input type="button" value="Register" (click)="redirect()">
-        <div class="login">Already have an account? Click <a href="login">here</a></div>
+        </select><br> -->
+        <button type="submit" value="Register">Register</button>
+        <div class="login">Already have an account? Click <a href="">here</a></div>
     </form>
 </div>
