@@ -29,3 +29,11 @@
     border-color: gray;
     color:gray;
 }
+
+hr{
+	padding: 0;
+	height: 10px;
+	border: none;
+	border-top: 1px solid #333;
+	box-shadow: 0 10px 10px -10px gray inset;
+}

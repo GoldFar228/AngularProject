@@ -1,0 +1,48 @@
+.registration-container{
+    margin: 100px auto 0 auto;
+    width:400px;
+    box-shadow: 0 0 10px black;
+    text-align: center;
+}
+
+.registration-header{
+    margin-bottom: 25px;
+    font-size: 26px;
+    background-color: black;
+    color: white;
+}
+
+.input-container{
+    margin-bottom: 10px;
+}
+
+input{
+    margin-bottom: 5px;
+    font-size: 20px;
+    height: 25px;
+    width: 200px;
+}
+
+.helper-text{
+    color:red;
+}
+
+.submit-button{
+    margin-bottom: 10px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+}
+
+.login{
+    font-size: 20px
+}
+
+.login a{
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.login a:hover{
+    color: gold;
+}

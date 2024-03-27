@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UserInterface } from '../../../user.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-authentication',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })
@@ -20,8 +21,8 @@ export class AuthenticationComponent {
   router = inject(Router);
   
   form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   onSubmit() {

@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,6 @@ export class HeaderComponent {
     {value: "Home", path:"/home"}, 
     {value: "Trainings", path:"/trainings"}, 
     {value: "Diets", path: "/diets"}, 
-    {value: "Profile", path: "/profile"}, 
   ];
   
   authService = inject(AuthService)
