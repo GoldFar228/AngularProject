@@ -2,10 +2,12 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="registration-header">Create new account</div>
         <div class="input-container">
+            <label>Username: </label>
             <input type="text" placeholder="Username" formControlName="username"> <br>
             <span class="helper-text" *ngIf="form.get('username').invalid && form.get('email').touched">Username mustn't be empty</span>
         </div>
         <div class="input-container">
+            <label>Email: </label>
             <input type="text" placeholder="E-mail" formControlName="email"><br>
             <span class="helper-text" *ngIf="form.get('email').invalid && form.get('email').touched">
                 <span *ngIf="form.get('email').errors['required']">Email must not be empty.</span>
@@ -13,6 +15,7 @@
             </span>
         </div>
         <div class="input-container">
+            <label>Password: </label>
             <input type="password" placeholder="Password" formControlName="password"><br>
             <span class="helper-text" *ngIf="form.get('password').invalid && form.get('email').touched">
                 <span *ngIf="form.get('password').errors['required']">Password must not be empty.</span>
