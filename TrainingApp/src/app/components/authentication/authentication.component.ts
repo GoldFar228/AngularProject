@@ -35,7 +35,5 @@ export class AuthenticationComponent {
       this.authService.currentUserSig.set(response.user);
       this.router.navigateByUrl('/home');
   });
-      
-    
   }
 }
