@@ -4,7 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { UserInterface } from '../user.interface';
+import { UserInterface } from './models/user.interface';
 
 @Component({
   selector: 'app-root',

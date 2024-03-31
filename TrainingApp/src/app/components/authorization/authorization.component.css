@@ -1,20 +1,41 @@
-.registration-container{
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.registration-container {
     margin: 100px auto 0 auto;
-    width:400px;
+    padding: 0;
+    width: 400px;
     box-shadow: 0 0 10px black;
+}
+
+.registration-header {
+    margin-bottom: 25px;
+    font-size: 26px;
+    width: 100%;
+    background-color: black;
+    color: white;
     text-align: center;
 }
 
-.registration-header{
-    margin-bottom: 25px;
-    font-size: 26px;
-    background-color: black;
-    color: white;
+.input-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    width: 75%;
 }
 
-.input-container{
-    margin-bottom: 10px;
+label {
+    flex: 1;
+    font-size: 20px;
 }
+
 label{
     font-size: 20px;
 }
@@ -25,26 +46,28 @@ input{
     width: 200px;
 }
 
-.helper-text{
-    color:red;
+.helper-text {
+    color: red;
 }
 
-.submit-button{
+.submit-button {
     margin-bottom: 10px;
     font-size: 20px;
     background-color: black;
     color: white;
+    width: 25%;
+    border-radius: 30px;
 }
 
-.login{
+.login {
     font-size: 20px
 }
 
-.login a{
+.login a {
     color: goldenrod;
     text-decoration: none;
 }
 
-.login a:hover{
+.login a:hover {
     color: gold;
 }

@@ -3,7 +3,7 @@
     <a class="header-item" *ngFor="let h of header" [href]="h.path">{{h.value}}</a>
     <a class="header-item"  *ngIf="authService.currentUserSig() === null" (click)="login()">Login</a>
     <a class="header-item" href="profile" *ngIf="authService.currentUserSig()">{{authService.currentUserSig()?.username}} </a>
-    <a class="header-item" (click)="logout()" href="#" *ngIf="authService.currentUserSig()">Logout</a>
+    <a class="header-item"  href="#" *ngIf="authService.currentUserSig()" (click)="logout()">Logout</a>
     
 </div>
 <hr>

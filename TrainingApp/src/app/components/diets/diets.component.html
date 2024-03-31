@@ -1,1 +1,18 @@
-<p>diets works!</p>
+<div class="diets-container">
+    <div class="input-container">
+        <input type="text" placeholder="age" #age> <br>
+        <select>
+            <option value="">--sex--</option>
+            <option value="man">man</option>
+            <option value="woman">woman</option>
+        </select> <br>
+        <input type="text" placeholder="height" #height> <br>
+        <input type="text" placeholder="weight" #weight> <br>
+    </div>
+    <button (click)="toCalculateWeight()">search</button>
+    <div class="calculated-weight-container">
+        <p>to lose weight you need to eat {{loseWeight}}</p>
+        <p>to keep weight you need to eat {{keepWeight}}</p>
+        <p>to gain weight you need to eat {{gainWeight}}</p>
+    </div>
+</div>

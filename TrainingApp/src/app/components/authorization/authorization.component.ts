@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserInterface } from '../../../user.interface';
+import { UserInterface } from '../../models/user.interface';
 import { response } from 'express';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
