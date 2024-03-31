@@ -1,6 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,8 @@ export class HeaderComponent {
     {value: "Trainings", path:"/trainings"}, 
     {value: "Diets", path: "/diets"}, 
   ];
+
+  header$ = of(this.header);
   
   authService = inject(AuthService)
   
