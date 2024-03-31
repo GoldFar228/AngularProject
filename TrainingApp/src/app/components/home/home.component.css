@@ -18,8 +18,9 @@
 #main .inner{
     font-size: 56px;
     color: #fff;
-    z-index: 2;
     position: relative;
+    z-index: 2;
+    text-align: center;
 }
 .home-container{
     margin-top: -10px;

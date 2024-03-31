@@ -5,10 +5,12 @@
     height: 300px;
     border: 1px solid black;
     box-shadow: 5px 1px 5px black;
+    transition: all ease-in-out 0.3s;
 }
 .training-container:hover{
     cursor: pointer;
     box-shadow: 6px 2px 6px black;
+    transform: scale(1.1);
 }
 .training-header{
     font-size: 20px
