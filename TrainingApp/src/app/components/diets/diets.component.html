@@ -4,8 +4,8 @@
             <input type="text" placeholder="age" formControlName="age"> <br>
             <select formControlName="sex">
                 <option value="">--sex--</option>
-                <option value="man">man</option>
-                <option value="woman">woman</option>
+                <option value="male">man</option>
+                <option value="female">woman</option>
             </select> <br>
             <input type="text" placeholder="height" formControlName="height"> <br>
             <input type="text" placeholder="weight" formControlName="weight"> <br>
@@ -13,8 +13,9 @@
         <button type="submit">search</button>
     </form>
         <div class="calculated-weight-container">
-            <p>to lose weight you need to eat {{loseWeight}}</p>
-            <p>to keep weight you need to eat {{keepWeight}}</p>
-            <p>to gain weight you need to eat {{gainWeight}}</p>
+            <p class="calculated-weight-item">to lose weight you need to eat {{loseWeight}}</p>
+            <p class="calculated-weight-item">to keep weight you need to eat {{keepWeight}}</p>
+            <p class="calculated-weight-item">to gain weight you need to eat {{gainWeight}}</p>
         </div>
 </div>
+<hr>

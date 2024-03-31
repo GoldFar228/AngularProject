@@ -26,7 +26,7 @@ export class DietsComponent {
 
   onSubmit(){
 
-    if(this.form.value.sex === "man"){
+    if(this.form.value.sex === "male"){
       this.loseWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
         - +this.form.value.age * 5 + 5) * 1.2 * 0.8).toFixed(0)); //1.2 множитель - минимальный множитель активности. Чем выше активность, тем больше множитель
       this.keepWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
@@ -35,7 +35,7 @@ export class DietsComponent {
         - +this.form.value.age * 5 + 5) * 1.2 * 1.2).toFixed(0));
     }
 
-    else if(this.form.value.sex === "woman"){
+    else if(this.form.value.sex === "female"){
       this.loseWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
         - +this.form.value.age * 5 - 161) * 1.2 * 0.8).toFixed(0));
       this.keepWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
