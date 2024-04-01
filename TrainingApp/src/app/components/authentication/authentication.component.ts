@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserInterface } from '../../models/user.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-authentication',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })

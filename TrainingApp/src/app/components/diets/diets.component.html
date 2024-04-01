@@ -2,10 +2,8 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="input-container">
             <input type="text" placeholder="age" formControlName="age"> <br>
-            <select formControlName="sex">
-                <option value="">--sex--</option>
-                <option value="male">man</option>
-                <option value="female">woman</option>
+            <select formControlName="gender">
+                <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
             </select> <br>
             <input type="text" placeholder="height" formControlName="height"> <br>
             <input type="text" placeholder="weight" formControlName="weight"> <br>
