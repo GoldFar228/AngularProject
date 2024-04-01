@@ -23,11 +23,13 @@
 .header-item:hover{
     border-color: lightgray;
     color:lightgray;
+    box-shadow: 0 0 10px white;
 }
 
 .header-item:active{
     border-color: gray;
     color:gray;
+    box-shadow: 0 0 15px white;
 }
 
 hr{
