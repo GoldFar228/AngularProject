@@ -3,10 +3,9 @@
 
 
 <div class="trainings" *ngFor="let t of trainings" >
-    <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t" (click)="handler(t)" >
+    <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t" (click)="handler(t)">
     </app-training-item>
     <div *ngIf="t.des">    
         <app-description class="descriptions" [name]="t.tag1"></app-description>
     </div>
 </div>
-

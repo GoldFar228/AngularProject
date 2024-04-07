@@ -38,8 +38,7 @@ export class TrainingsComponent {
     this.searchString = e;
     console.log(this.searchString)
   }
-  public flag: boolean = false;
-  public handler(training): void{
+  handler(training): void{
     training.des = !training.des
   }
 }
