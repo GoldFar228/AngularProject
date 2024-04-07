@@ -15,7 +15,9 @@ export class DietsComponent {
     {value: "male", str: "male"},
     {value: "female", str: "female"}
 ]
+//достаю данные из localStorage, чтобы затем вставить их в форму, для удобства пользователя
   profileData = JSON.parse(localStorage.getItem('profileData'));
+  
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
