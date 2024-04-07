@@ -4,8 +4,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    width: 100%;
     border: 1px solid black;
-    border-radius: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
 }
 .input-container{
+    margin-bottom: 15px;
 }
+
+.input-container input{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.input-container select{
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+.calculated-weight-item{
+    font-size: 20px;
+}
+
+input.ng-touched.ng-invalid{border: 2px solid red }
+input.ng-touched.ng-valid{border: 2px solid green }
+
+select.ng-touched.ng-invalid{border: 2px solid red }
+select.ng-touched.ng-valid{border: 2px solid green }

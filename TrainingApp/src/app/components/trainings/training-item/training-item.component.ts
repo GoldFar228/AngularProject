@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Training } from '../../../models/Training.model';
 
 @Component({
   selector: 'app-training-item',
@@ -9,5 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TrainingItemComponent {
   @Input()
-  training: {header: string, img: string, tag1: string, tag1Img: string, tag2: string, tag2Img: string};
+  training: Training;
 }

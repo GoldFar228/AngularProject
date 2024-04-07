@@ -4,23 +4,26 @@
         <div class="input-container">
             <label>Email: </label>
             <input type="email" formControlName="email" placeholder="E-mail"> <br>
-            <span class="helper-text red-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+            <app-validator-msg [control]="form.controls['email']"></app-validator-msg>
+            <!-- <span class="helper-text red-text" *ngIf="form.get('email').invalid && form.get('email').touched">
                 <span *ngIf="form.get('email').errors['required']">Email must not be empty.</span>
                 <span *ngIf="form.get('email').errors['email']">Email is incorrect.</span>
-            </span>
+            </span> -->
         </div>
         <div class="input-container">
             <label>Password: </label>
             <input type="password" formControlName="password" placeholder="Password"><br>
-            <span class="helper-text red-text" *ngIf="form.get('password').invalid && form.get('email').touched">
+            <app-validator-msg [control]="form.controls['password']"></app-validator-msg>
+            <!-- <span class="helper-text red-text" *ngIf="form.get('password').invalid && form.get('email').touched">
                 <span *ngIf="form.get('password').errors['required']">Password must not be empty.</span>
                 <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
                     Password must be at least {{form.get('password').errors['minlength']['requiredLength']}} symbols.
                     Now it's {{form.get('password').errors['minlength']['actualLength']}} symbols.
                 </span>
-            </span>
+            </span> -->
         </div>
         <button type="submit" class="submit-button">Login</button>
-        <div class="registration">Have no accout? <a href="registration">Create account</a></div>
+        <div class="registration">Have no accout? <a routerLink="registration">Create account</a></div>
+        <div *ngIf="loader$ | async">Loading...</div>
     </form>
 </div>
