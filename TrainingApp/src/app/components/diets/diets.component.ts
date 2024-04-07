@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { DietsItemComponent } from './diets-item/diets-item.component';
 
 @Component({
   selector: 'app-diets',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DietsItemComponent],
   templateUrl: './diets.component.html',
   styleUrl: './diets.component.css'
 })
@@ -30,4 +31,18 @@ export class DietsComponent {
     this.gainWeight = Number(((+this.weight.nativeElement.value * 10 + +this.height.nativeElement.value * 6.25 
       - +this.age.nativeElement.value * 5) * 1.38 * 1.2).toFixed(0));
   }
+
+  public diets: { header: string; img: string; description: string; }[] = [
+    {
+      header: "Joe Rogan's Carnivore Diet",
+      img: "../../../../assets/diets-img/rogan.jpg",
+      description: '',
+    },
+    {
+      header: "Sam Sulek's Diet",
+      img: "../../../../assets/diets-img/sulek.jpg",
+      description: '',
+    }
+  ]
+  
 }

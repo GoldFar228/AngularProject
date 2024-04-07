@@ -11,8 +11,19 @@
     </div>
     <button (click)="toCalculateWeight()">search</button>
     <div class="calculated-weight-container">
-        <p>to lose weight you need to eat {{loseWeight}}</p>
-        <p>to keep weight you need to eat {{keepWeight}}</p>
-        <p>to gain weight you need to eat {{gainWeight}}</p>
+        <p>to lose weight you have to eat {{loseWeight}} calories</p>
+        <p>to keep weight you have to eat {{keepWeight}} calories</p>
+        <p>to gain weight you have to eat {{gainWeight}} calories</p>
     </div>
+</div>
+
+<h2 class="famous-diets-header">
+    Check out some of the diets of your favorite influencers!
+</h2>
+
+
+<div class="famous-diets-wrapper">
+    <ng-container *ngFor="let diet of diets">
+        <app-diets-item [diet]="diet"></app-diets-item>
+    </ng-container>
 </div>
