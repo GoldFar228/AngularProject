@@ -7,5 +7,5 @@
         <input type="text" placeholder="height" formControlName="height"> <br>
         <input type="text" placeholder="weight" formControlName="weight"> <br>
     </div>
-    <button type="submit" (click)="onSubmit()">Save profile data</button>
+    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button>
 </form>
