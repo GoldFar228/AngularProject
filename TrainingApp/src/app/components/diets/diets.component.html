@@ -17,3 +17,14 @@
         </div>
 </div>
 <hr>
+
+<h2 class="famous-diets-header">
+    Check out some of the diets of your favorite influencers!
+</h2>
+
+
+<div class="famous-diets-wrapper">
+    <ng-container *ngFor="let diet of diets">
+        <app-diets-item [diet]="diet"></app-diets-item>
+    </ng-container>
+</div>

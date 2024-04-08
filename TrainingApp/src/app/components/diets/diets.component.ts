@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
+import { DietsItemComponent } from './diets-item/diets-item.component';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-diets',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DietsItemComponent],
   templateUrl: './diets.component.html',
   styleUrl: './diets.component.css'
 })
@@ -51,4 +52,18 @@ export class DietsComponent {
         - +this.form.value.age * 5 - 161) * 1.2 * 1.2).toFixed(0));
     }
   }
+
+  public diets: { header: string; img: string; description: string; }[] = [
+    {
+      header: "Joe Rogan's Carnivore Diet",
+      img: "../../../../assets/diets-img/rogan.jpg",
+      description: '',
+    },
+    {
+      header: "Sam Sulek's Diet",
+      img: "../../../../assets/diets-img/sulek.jpg",
+      description: '',
+    }
+  ]
+  
 }
