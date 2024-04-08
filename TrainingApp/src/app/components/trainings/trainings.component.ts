@@ -33,7 +33,4 @@ export class TrainingsComponent implements OnInit{
   handler(training): void{
     training.des = !training.des
   }
-  handler(training): void{
-    training.des = !training.des
-  }
 }

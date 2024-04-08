@@ -4,5 +4,6 @@ export class Training {
     tag1: string;
     tag1Img: string;
     tag2: string;
-    tag2Img: string
+    tag2Img: string;
+    des: boolean
 }
