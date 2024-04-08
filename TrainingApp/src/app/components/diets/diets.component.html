@@ -8,7 +8,7 @@
             <input type="text" placeholder="height" formControlName="height"> <br>
             <input type="text" placeholder="weight" formControlName="weight"> <br>
         </div>
-        <button type="submit">search</button>
+        <button type="submit" [disabled]="form.invalid">search</button>
     </form>
         <div class="calculated-weight-container">
             <p class="calculated-weight-item">to lose weight you need to eat {{loseWeight}}</p>
