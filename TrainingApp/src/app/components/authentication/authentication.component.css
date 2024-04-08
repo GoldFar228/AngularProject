@@ -44,7 +44,7 @@ input{
 .submit-button{
     margin-bottom: 10px;
     font-size: 20px;
-    background-color: black;
+    /* background-color: black; */
     color: white;
     width: 25%;
     border-radius: 30px;

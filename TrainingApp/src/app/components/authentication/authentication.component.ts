@@ -7,13 +7,14 @@ import { UserInterface } from '../../models/user.interface';
 import { CommonModule } from '@angular/common';
 import { ValidatorMsgComponent } from "./validator-msg/validator-msg.component";
 import { BehaviorSubject, delay, finalize, of } from 'rxjs';
+import { SetBackgroundDirective } from '../../CustomDirectives/set-background.directive';
 
 @Component({
     selector: 'app-authentication',
     standalone: true,
     templateUrl: './authentication.component.html',
     styleUrl: './authentication.component.css',
-    imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent]
+    imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent, SetBackgroundDirective]
 })
 export class AuthenticationComponent {
   loader$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
