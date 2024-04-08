@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
 import { Training } from '../../models/Training.model';
 import { TrainingService } from '../../services/trainings.service';
+import { DescriptionComponent } from './description/description.component';
+import { Console } from 'console';
 
 @Component({
     selector: 'app-trainings',
     standalone: true,
     templateUrl: './trainings.component.html',
     styleUrl: './trainings.component.css',
-    imports: [TrainingItemComponent, CommonModule, FiltersComponent]
+    imports: [TrainingItemComponent, CommonModule, FiltersComponent, DescriptionComponent]
 })
 export class TrainingsComponent implements OnInit{
 
@@ -27,5 +29,11 @@ export class TrainingsComponent implements OnInit{
   setSearchString(e: string): void{
     this.searchString = e;
     console.log(this.searchString);
+  }
+  handler(training): void{
+    training.des = !training.des
+  }
+  handler(training): void{
+    training.des = !training.des
   }
 }
