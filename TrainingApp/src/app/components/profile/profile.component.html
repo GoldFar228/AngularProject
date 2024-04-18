@@ -1,1 +1,11 @@
-<p>profile works!</p>
+<form [formGroup]="form">
+    <div class="profile-container">
+        <input type="text" placeholder="age" formControlName="age"> <br>
+        <select formControlName="gender">
+            <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
+        </select> <br>
+        <input type="text" placeholder="height" formControlName="height"> <br>
+        <input type="text" placeholder="weight" formControlName="weight"> <br>
+    </div>
+    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button>
+</form>

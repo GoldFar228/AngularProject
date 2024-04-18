@@ -7,4 +7,5 @@
     display: flex;
     margin-left: 500px;
     margin-right: auto;
+    justify-content: center;
 }

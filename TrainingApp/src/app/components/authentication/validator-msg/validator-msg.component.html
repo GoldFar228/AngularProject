@@ -1,0 +1,15 @@
+<div class="form_error" *ngIf="control && control.touched && control.invalid">
+    <ng-container *ngIf="errorMessage; else baseMessage">{{errorMessage}}</ng-container>
+    <ng-template #baseMessage>
+        <div class="helper-text red-text" *ngIf="control.errors?.['required']">
+            This area must not be empty.
+        </div>
+        <div class="helper-text red-text" *ngIf="control.errors?.['email']">
+            Email is incorrect.
+        </div>
+        <div class="helper-text red-text" *ngIf="control.errors?.['minlength'] && control.errors?.['minlength']['requiredLength']">
+            Password must be at least {{control.errors['minlength']['requiredLength']}} symbols.
+            Now it's {{control.errors['minlength']['actualLength']}} symbols.
+        </div>
+    </ng-template>
+</div>

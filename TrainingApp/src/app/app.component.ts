@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthService } from './services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { UserInterface } from './models/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +13,29 @@ import { HomeComponent } from './components/home/home.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'TrainingApp';
+
+  authService = inject(AuthService);
+  http = inject(HttpClient)
+
+  ngOnInit():void {
+    this.http.get<{user: UserInterface}>('https://api.realworld.io/api/user').subscribe({
+      next: (response) => {
+        this.authService.currentUserSig.set(response.user);
+      },
+      error: () => {
+        this.authService.currentUserSig.set(null);
+      }
+    }); 
+  }
+
+  login(): void{
+    document.location.href = "/";
+  }
+
+  logout(): void{
+    localStorage.setItem('token', '');
+    this.authService.currentUserSig.set(null)
+  }
 }

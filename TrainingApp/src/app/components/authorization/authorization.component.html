@@ -1,19 +1,31 @@
-<div>
-    <form>
-        Create new account<br>
-        <input type="text" placeholder="E-mail"> <br>
-        <input type="text" placeholder="Password"><br>
-        <input type="text" placeholder="Age"> <br>
-        <input type="text" placeholder="Height"><br>
-        <input type="text" placeholder="Weight"> <br>
-        <select>
-            <option value="">--Choose your goal--</option>
-            <option value="Gain weight">Gain weight</option>
-            <option value="Loose fat">Loose fat</option>
-            <option value="Get stronger">Get stronger</option>
-            <option value="Learn technics">Learn technics</option>
-        </select><br>
-        <input type="button" value="Register" (click)="redirect()">
-        <div class="login">Already have an account? Click <a href="login">here</a></div>
+<div class="registration-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="registration-header">Create new account</div>
+        <div class="input-container">
+            <label>Username: </label>
+            <input type="text" placeholder="Username" formControlName="username"> <br>
+            <span class="helper-text" *ngIf="form.get('username').invalid && form.get('email').touched">Username mustn't be empty</span>
+        </div>
+        <div class="input-container">
+            <label>Email: </label>
+            <input type="text" placeholder="E-mail" formControlName="email"><br>
+            <span class="helper-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+                <span *ngIf="form.get('email').errors['required']">Email must not be empty.</span>
+                <span *ngIf="form.get('email').errors['email']">Email is incorrect.</span>
+            </span>
+        </div>
+        <div class="input-container">
+            <label>Password: </label>
+            <input type="password" placeholder="Password" formControlName="password"><br>
+            <span class="helper-text" *ngIf="form.get('password').invalid && form.get('email').touched">
+                <span *ngIf="form.get('password').errors['required']">Password must not be empty.</span>
+                <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+                    Password must be at least {{form.get('password').errors['minlength']['requiredLength']}} symbols.
+                    Now it's {{form.get('password').errors['minlength']['actualLength']}} symbols.
+                </span>
+            </span>
+        </div>
+        <button type="submit" class="submit-button">Register</button>
+        <div class="login" class="login">Already have an account? Click <a routerLink="">here</a></div>
     </form>
 </div>

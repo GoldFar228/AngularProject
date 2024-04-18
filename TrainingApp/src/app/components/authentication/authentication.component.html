@@ -1,9 +1,18 @@
-<div>
-    <form>
-        Log in your account<br>
-        <input type="text" placeholder="E-mail"> <br>
-        <input type="text" placeholder="Password"><br>
-        <input type="button" value="Log in" (click)="redirect()">
-        <div class="registration"><a href="registration">Create account</a></div>
+<div class="login-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="login-header">Log in your account</div>
+        <div class="input-container">
+            <label>Email: </label>
+            <input type="email" formControlName="email" placeholder="E-mail"> <br>
+            <app-validator-msg [control]="form.controls['email']"></app-validator-msg>
+        </div>
+        <div class="input-container">
+            <label>Password: </label>
+            <input type="password" formControlName="password" placeholder="Password"><br>
+            <app-validator-msg [control]="form.controls['password']"></app-validator-msg>
+        </div>
+        <button appSetBackground color="black" type="submit" class="submit-button">Login</button>
+        <div class="registration">Have no accout? <a routerLink="registration">Create account</a></div>
+        <div *ngIf="loader$ | async">Loading...</div>
     </form>
 </div>

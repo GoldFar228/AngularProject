@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
+import { Training } from '../../models/Training.model';
+import { TrainingService } from '../../services/trainings.service';
 import { DescriptionComponent } from './description/description.component';
 import { Console } from 'console';
 
@@ -12,31 +14,21 @@ import { Console } from 'console';
     styleUrl: './trainings.component.css',
     imports: [TrainingItemComponent, CommonModule, FiltersComponent, DescriptionComponent]
 })
-export class TrainingsComponent {
-  trainings: { header: string, img: string, tag1: string, tag1Img: string, tag2: string, tag2Img: string, des: boolean}[] = 
-  [{
-    header: "Increase your bench press",
-    img: "../../../../assets/man-barbell-bench-press.png",
-    tag1: "Get stronger",
-    tag1Img: "../../../../assets/get-stronger.jpg",
-    tag2: "30 minutes",
-    tag2Img: "../../../../assets/30-mins.jpg",
-    des: false
-  },
-  {
-    header: "Chest growth in the gym",
-    img: "../../../../assets/chest-growth.jpg",
-    tag1: "Gain weight",
-    tag1Img: "../../../../assets/gain-weight.jpg",
-    tag2: "30 minutes",
-    tag2Img: "../../../../assets/30-mins.jpg",
-    des: false
-  }];
+export class TrainingsComponent implements OnInit{
+
+  trainings: Training[];
+
+  constructor(private trainingService: TrainingService){ }
+
   public searchString: string = '';
+
+  ngOnInit(): void {
+    this.trainings = this.trainingService.getData();
+  }
 
   setSearchString(e: string): void{
     this.searchString = e;
-    console.log(this.searchString)
+    console.log(this.searchString);
   }
   handler(training): void{
     training.des = !training.des

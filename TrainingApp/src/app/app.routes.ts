@@ -4,7 +4,6 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { AuthorizationComponent } from './components/authorization/authorization.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { DietsComponent } from './components/diets/diets.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
@@ -14,7 +13,6 @@ export const routes: Routes = [
     {path: 'trainings', component: TrainingsComponent},
     {path: 'diets', component: DietsComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'calculator', component: CalculatorComponent}
 ];
 
 
