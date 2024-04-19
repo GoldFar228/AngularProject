@@ -1,0 +1,4 @@
+<div class="filter-item"><input type="number"  name="weight"  [(ngModel)]="index.weight" #indexWeight="ngModel"/>Weight</div>
+<div class="filter-item"><input type="number" name="height" [(ngModel)]="index.height" #indexHeight="ngModel"/>Height</div>
+<div><button handler (click)="logIndex(indexWeight, indexHeight)">Find your mass index</button></div>
+<div>{{index | indexmass}}</div>

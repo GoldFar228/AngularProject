@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Hash } from 'crypto';
+import { DescriptionService } from '../../../services/description.service';
 
 @Component({
   selector: 'app-description',
@@ -10,7 +10,10 @@ import { Hash } from 'crypto';
   styleUrl: './description.component.css'
 })
 export class DescriptionComponent {
-   descriptions: {[key :string] : string}=
-   {"Get stronger": "качайся много ешь куринную грудку", 'Gain weight': 'качайся много ешь гречку и куринную грудку'};
+  constructor(private descriptionService: DescriptionService){ }
+   descriptions: {[key :string] : string};
+   ngOnInit(): void {
+    this.descriptions = this.descriptionService.getData()
+  }
   @Input() name!: string;
 }
