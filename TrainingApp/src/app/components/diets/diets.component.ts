@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DietsItemComponent } from './diets-item/diets-item.component';
+import { dietsMock } from '../../mocks/diets-mocks/diets.mock';
 
 @Component({
   selector: 'app-diets',
@@ -32,17 +33,6 @@ export class DietsComponent {
       - +this.age.nativeElement.value * 5) * 1.38 * 1.2).toFixed(0));
   }
 
-  public diets: { header: string; img: string; description: string; }[] = [
-    {
-      header: "Joe Rogan's Carnivore Diet",
-      img: "../../../../assets/diets-img/rogan.jpg",
-      description: '',
-    },
-    {
-      header: "Sam Sulek's Diet",
-      img: "../../../../assets/diets-img/sulek.jpg",
-      description: '',
-    }
-  ]
+  public diets = dietsMock;
   
 }

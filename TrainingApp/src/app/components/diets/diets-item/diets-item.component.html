@@ -1,9 +1,18 @@
-<div class="diet-item">
+<div class="diet-item" (click)="toggleDescription()">
   <h2 class="diet-header">
     {{ diet.header }}
   </h2>
   <img [src]="diet.img" alt="{{ diet.header }}" class="diet-image" />
-  <div class="diet-description">
-    {{ diet.description }}
+</div>
+
+<div class="modal" *ngIf="showDescription">
+  <div class="modal-content">
+    <span class="close" (click)="toggleDescription()">Закрыть</span>
+    <h2>
+      {{ diet.header }}
+    </h2>
+    <p class="diet-description">
+      {{ diet.description }}
+    </p>
   </div>
 </div>
