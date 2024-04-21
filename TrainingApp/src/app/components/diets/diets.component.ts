@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DietsItemComponent } from './diets-item/diets-item.component';
-import { dietsMock } from '../../mocks/diets-mocks/diets.mock';
+import { DietService } from '../../services/diet.service';
 
 @Component({
   selector: 'app-diets',
@@ -10,7 +10,7 @@ import { dietsMock } from '../../mocks/diets-mocks/diets.mock';
   templateUrl: './diets.component.html',
   styleUrl: './diets.component.css'
 })
-export class DietsComponent {
+export class DietsComponent implements OnInit{
   @ViewChild('age')
   age: ElementRef;
 
@@ -33,6 +33,20 @@ export class DietsComponent {
       - +this.age.nativeElement.value * 5) * 1.38 * 1.2).toFixed(0));
   }
 
-  public diets = dietsMock;
+  public diets: any[];
+  
+  constructor(private dietService: DietService) {
+
+  }
+
+  loadDiets(): void {
+    this.dietService.getDiets().subscribe(diets => {
+      this.diets = diets;
+    })
+  }
+
+  ngOnInit(): void {
+      this.loadDiets();
+  }
   
 }

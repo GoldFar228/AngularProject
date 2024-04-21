@@ -1,4 +1,8 @@
-export const dietsMock: { header: string; img: string; description: string }[] =
+export const dietsMock: { 
+  header: string; 
+  img: string; 
+  description: string 
+}[] =
   [
     {
       header: "Joe Rogan's Carnivore Diet",
