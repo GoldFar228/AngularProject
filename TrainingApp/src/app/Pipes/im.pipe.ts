@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Index } from '../models/indexMass.model';
 @Pipe({
-    name: "indexmass"
+    name: "indexmass", standalone: true
 })
 export class IndexMassPipe implements PipeTransform {
 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-import { PipesModule } from '../../../Pipes/ngPipes';
+import { IndexMassPipe } from '../../../Pipes/im.pipe';
 import { Index } from '../../../models/indexMass.model';
 @Component({
   selector: 'app-index-mass',
   standalone: true,
-  imports: [FormsModule, PipesModule],
+  imports: [FormsModule, IndexMassPipe],
   templateUrl: './index-mass.component.html',
   styleUrl: './index-mass.component.css'
 })
