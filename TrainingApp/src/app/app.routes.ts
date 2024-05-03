@@ -1,18 +1,28 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { AuthorizationComponent } from './components/authorization/authorization.component';
-import { TrainingsComponent } from './components/trainings/trainings.component';
-import { DietsComponent } from './components/diets/diets.component';
-import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
-    {path: '', component: AuthenticationComponent },
-    {path: 'home', component: HomeComponent},
-    {path: 'registration', component: AuthorizationComponent},
-    {path: 'trainings', component: TrainingsComponent},
-    {path: 'diets', component: DietsComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: '', loadComponent: () =>
+        import('./components/authentication/authentication.component').then(
+            (m) => m.AuthenticationComponent
+        ) },
+    {path: 'home', loadComponent: () =>
+        import('./components/home/home.component').then(
+            (m) => m.HomeComponent
+        )},
+    {path: 'registration', loadComponent: () =>
+        import('./components/authorization/authorization.component').then(
+            (m) => m.AuthorizationComponent
+        )},
+    {path: 'trainings', loadComponent: () =>
+        import('./components/trainings/trainings.component').then(
+            (m) => m.TrainingsComponent
+        )},
+    {path: 'diets', loadComponent: () =>
+        import('./components/diets/diets.component').then(
+            (m) => m.DietsComponent)},
+    {path: 'profile', loadComponent: () =>
+        import('./components/profile/profile.component').then(
+            (m) => m.ProfileComponent)},
 ];
 
 
