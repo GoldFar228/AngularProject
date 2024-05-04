@@ -5,14 +5,13 @@ import { AuthorizationComponent } from './components/authorization/authorization
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { DietsComponent } from './components/diets/diets.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './guards/authGuard.guard';
 
 export const routes: Routes = [
     {path: '', component: AuthenticationComponent },
-    {path: 'home', component: HomeComponent},
+    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'registration', component: AuthorizationComponent},
-    {path: 'trainings', component: TrainingsComponent},
-    {path: 'diets', component: DietsComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: 'trainings', component: TrainingsComponent, canActivate: [AuthGuard]},
+    {path: 'diets', component: DietsComponent, canActivate: [AuthGuard]},
+    {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 ];
-
-
