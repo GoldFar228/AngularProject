@@ -2,11 +2,14 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="input-container">
             <input type="text" placeholder="age" formControlName="age"> <br>
+            <app-validator-msg [control]="form.controls['age']" [errorMessage]="'age must not be empty'"></app-validator-msg>
             <select formControlName="gender">
                 <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
             </select> <br>
             <input type="text" placeholder="height" formControlName="height"> <br>
+            <app-validator-msg [control]="form.controls['height']" [errorMessage]="'height must not be empty'"></app-validator-msg>
             <input type="text" placeholder="weight" formControlName="weight"> <br>
+            <app-validator-msg [control]="form.controls['weight']" [errorMessage]="'weight must not be empty'"></app-validator-msg>
         </div>
         <button type="submit" [disabled]="form.invalid">search</button>
     </form>

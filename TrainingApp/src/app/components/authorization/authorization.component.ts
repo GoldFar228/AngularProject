@@ -6,11 +6,12 @@ import { response } from 'express';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ValidatorMsgComponent } from '../../reusable/validator-msg/validator-msg.component';
 
 @Component({
   selector: 'app-authorization',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent],
   templateUrl: './authorization.component.html',
   styleUrl: './authorization.component.css'
 })
