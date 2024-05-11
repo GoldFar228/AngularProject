@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { DietsItemComponent } from './diets-item/diets-item.component';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-msg.component";
 
 @Component({
-  selector: 'app-diets',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DietsItemComponent],
-  templateUrl: './diets.component.html',
-  styleUrl: './diets.component.css'
+    selector: 'app-diets',
+    standalone: true,
+    templateUrl: './diets.component.html',
+    styleUrl: './diets.component.css',
+    imports: [CommonModule, ReactiveFormsModule, DietsItemComponent, ValidatorMsgComponent]
 })
 export class DietsComponent {
   genders: {value: string, str: string}[] = [

@@ -5,9 +5,9 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { UserInterface } from '../../models/user.interface';
 import { CommonModule } from '@angular/common';
-import { ValidatorMsgComponent } from "./validator-msg/validator-msg.component";
 import { BehaviorSubject, delay, finalize, of } from 'rxjs';
 import { SetBackgroundDirective } from '../../CustomDirectives/set-background.directive';
+import { ValidatorMsgComponent } from '../../reusable/validator-msg/validator-msg.component';
 
 @Component({
     selector: 'app-authentication',

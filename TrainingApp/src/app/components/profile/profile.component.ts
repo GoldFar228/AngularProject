@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileData } from '../../models/ProfileData.model';
+import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-msg.component";
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+    selector: 'app-profile',
+    standalone: true,
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css',
+    imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent]
 })
 export class ProfileComponent{
   //TODO: Сделать так, чтобы данные возраста, пола, роста и веса сохранялись в localStorage и пользователю не приходилось вводить
