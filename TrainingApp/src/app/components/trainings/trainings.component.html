@@ -10,3 +10,8 @@
     </div>
 </div>
 <app-index-mass></app-index-mass>
+<button class="recomend"(click)="show()">Recommended workouts</button>
+<div class="trainings1" *ngFor="let t of trainings" >
+    <app-training-item *ngIf="t.tag1.toLocaleLowerCase() === recomend() && showBlock"  [training]="t"></app-training-item>
+</div>
+
