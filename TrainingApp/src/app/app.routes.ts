@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { TrainingDetailComponent } from './components/trainings/training-detail/training-detail.component';
 
 export const routes: Routes = [
     {path: '', loadComponent: () =>
@@ -23,6 +24,9 @@ export const routes: Routes = [
     {path: 'profile', loadComponent: () =>
         import('./components/profile/profile.component').then(
             (m) => m.ProfileComponent)},
+    {path: 'detail/:id', loadComponent: () =>
+        import('./components/trainings/training-detail/training-detail.component').then(
+            (m) => m.TrainingDetailComponent)},
 ];
 
 

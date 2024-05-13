@@ -7,13 +7,14 @@ import { TrainingService } from '../../services/trainings.service';
 import { DescriptionComponent } from './description/description.component';
 import { IndexMassComponent } from './index-mass/index-mass.component';
 import { IndexMassPipe } from "../../Pipes/im.pipe";
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-trainings',
     standalone: true,
     templateUrl: './trainings.component.html',
     styleUrl: './trainings.component.css',
-    imports: [TrainingItemComponent, CommonModule, FiltersComponent, DescriptionComponent, IndexMassComponent, IndexMassPipe]
+    imports: [TrainingItemComponent, CommonModule, FiltersComponent, DescriptionComponent, IndexMassComponent, IndexMassPipe, RouterOutlet, RouterLink]
 })
 export class TrainingsComponent implements OnInit{
 
@@ -46,6 +47,5 @@ export class TrainingsComponent implements OnInit{
   }
   show(): void{
     this.showBlock = !this.showBlock
-    console.log(this.showBlock)
   }
 }

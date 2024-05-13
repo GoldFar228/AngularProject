@@ -1,8 +1,8 @@
 .trainings{
     display: flex;
     margin-left: 50px;
-    margin-right: auto;
-    width: 400px;
+    margin-right: 0;
+    width: 600px;
 }
 .trainings.descriptions{
     display: flex;
@@ -11,16 +11,17 @@
     justify-content: center;
 }
 .trainings1{
+    position: relative;
     display: flex;
-    margin-right: auto;
     width: 400px;
+    left: 750px;
     bottom: 500px;
-    margin-left: 200px;
 }
 .recomend{
+    position: relative;
     display: flex;
     margin-right: auto;
-    bottom: 500px;
-    margin-left: 200px;
     height: 25px;
+    left: 760px;
+    bottom: 150px;
 }

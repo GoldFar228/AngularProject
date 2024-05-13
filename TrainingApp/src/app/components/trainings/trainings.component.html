@@ -5,6 +5,10 @@
 <div class="trainings" *ngFor="let t of trainings" >
     <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t" (click)="handler(t)">
     </app-training-item>
+    <div>
+        <a routerLink="/detail/{{t.sequence_number}}">Details</a>
+    <router-outlet></router-outlet>
+    </div>
     <div *ngIf="t.des">    
         <app-description class="descriptions" [name]="t.tag1"></app-description>
     </div>
