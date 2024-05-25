@@ -6,6 +6,7 @@ import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
 import { Training } from '../../../models/Training.model';
 import { DataTrainingService } from '../../../services/dataTrainings.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-description',
@@ -39,16 +40,9 @@ export class DescriptionComponent implements OnChanges {
   dataTrainingsService = inject(DataTrainingService)
   addTraining() {
     const newTraining = this.trainingService.getTrainingByHeader(this.name);
-    // if (newTraining === JSON.parse(localStorage.getItem('trainingsUserChose'))) {
-    //   console.log('This is already exist')
-    // }
-    // else {
     console.log(newTraining);
     this.dataTrainingsService.addItem(newTraining);
     console.log(localStorage.getItem('trainingsUserChose'));
-    // }
-    //TODO: сделать так, чтобы при клике на кнопку "добавить" тренировка добавлялалсь в профиль
-    //сделать так, чтобы при клике добавлялся объект в localStorage и затем в профиле, доставать данные оттуда 
   }
 
   exit() {
