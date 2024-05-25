@@ -10,5 +10,13 @@
         <input type="text" placeholder="weight" formControlName="weight"> <br>
         <app-validator-msg [control]="form.controls['weight']" [errorMessage]="'weight must not be empty'"></app-validator-msg>
     </div>
-    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button>
+    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button><br>
+
+    <textarea placeholder="Enter your achievments" #achiveArea></textarea>
+    <button (click)="setNewAchievment()">add achievment</button>
+    <div #container></div>
+    <div *ngFor="let t of trainingsUserChose">
+        <div>123</div>
+        <app-training-item [training]="training"></app-training-item>
+    </div>
 </form>

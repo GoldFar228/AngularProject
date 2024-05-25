@@ -32,11 +32,6 @@ export class AuthorizationComponent {
   });
 
   onSubmit(){
-    this.http.post<{user: UserInterface}>('https://api.realworld.io/api/users', {user: this.form.getRawValue(), }
-    ).subscribe(response => {
-      localStorage.setItem('token', response.user.token);
-      this.authService.currentUserSig.set(response.user);
-      this.router.navigateByUrl('/home');
-  });
+    this.authService.registration(this.form);
   }
 }

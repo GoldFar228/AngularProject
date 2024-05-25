@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
@@ -17,7 +17,8 @@ import { Console } from 'console';
 export class TrainingsComponent implements OnInit{
 
   trainings: Training[];
-
+  chosenTraining: Training;
+  isVisible: boolean;
   constructor(private trainingService: TrainingService){ }
 
   public searchString: string = '';
@@ -31,6 +32,10 @@ export class TrainingsComponent implements OnInit{
     console.log(this.searchString);
   }
   handler(training): void{
-    training.des = !training.des
+    this.chosenTraining = training;
+    this.chosenTraining.des = true;
+  }
+  setIsVisible(e: boolean){
+    this.chosenTraining.des = e
   }
 }
