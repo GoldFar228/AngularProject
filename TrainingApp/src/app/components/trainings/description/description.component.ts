@@ -5,6 +5,7 @@ import { TrainingDescription } from '../../../models/TrainingDescription.model';
 import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
 import { Training } from '../../../models/Training.model';
+import { DataTrainingService } from '../../../services/dataTrainings.service';
 
 @Component({
   selector: 'app-description',
@@ -35,18 +36,15 @@ export class DescriptionComponent implements OnChanges {
 
   trainingsUserChose: Training[] = JSON.parse(this.trainingsUserChoseJSON);
 
+  dataTrainingsService = inject(DataTrainingService)
   addTraining() {
-    let newTraining = this.trainingService.getTrainingByHeader(this.name);
+    const newTraining = this.trainingService.getTrainingByHeader(this.name);
     // if (newTraining === JSON.parse(localStorage.getItem('trainingsUserChose'))) {
     //   console.log('This is already exist')
     // }
     // else {
-    console.log(newTraining)
-    this.trainingsUserChose.push(newTraining)
-    const updatedTrainingsUserChoseJSON = JSON.stringify(this.trainingsUserChose)
-    console.log('item added', newTraining);
-    console.log('you list', updatedTrainingsUserChoseJSON);
-    localStorage.setItem('trainingsUserChose', updatedTrainingsUserChoseJSON);
+    console.log(newTraining);
+    this.dataTrainingsService.addItem(newTraining);
     console.log(localStorage.getItem('trainingsUserChose'));
     // }
     //TODO: сделать так, чтобы при клике на кнопку "добавить" тренировка добавлялалсь в профиль

@@ -25,10 +25,10 @@ export class DietsComponent {
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
-    age: [this.profileData.age, [Validators.required, Validators.max(150), Validators.min(0)]],
-    height: [this.profileData.height, [Validators.required, Validators.max(300), Validators.min(10)]],
-    weight: [this.profileData.weight, [Validators.required, Validators.max(300), Validators.min(2)]],
-    gender: [this.profileData.gender, Validators.required]
+    age: [this.profileData ? this.profileData.age : '' , [Validators.required, Validators.max(150), Validators.min(0)]],
+    height: [this.profileData ? this.profileData.height : '', [Validators.required, Validators.max(300), Validators.min(10)]],
+    weight: [this.profileData ? this.profileData.weight : '', [Validators.required, Validators.max(300), Validators.min(2)]],
+    gender: [this.profileData ? this.profileData.gender : '', Validators.required]
   })
   // age = localStorage.getItem('name');
 

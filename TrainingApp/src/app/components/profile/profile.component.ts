@@ -5,6 +5,7 @@ import { ProfileData } from '../../models/ProfileData.model';
 import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-msg.component";
 import { Training } from '../../models/Training.model';
 import { TrainingItemComponent } from "../trainings/training-item/training-item.component";
+import { DataTrainingService } from '../../services/dataTrainings.service';
 
 @Component({
     selector: 'app-profile',
@@ -22,11 +23,11 @@ export class ProfileComponent implements OnInit{
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
-    age: [this.profileData.age, [Validators.required, Validators.max(150), Validators.min(0)]],
-    height: [this.profileData.height, [Validators.required, Validators.max(300), Validators.min(10)]],
-    weight: [this.profileData.weight, [Validators.required, Validators.max(300), Validators.min(2)]],
-    gender: [this.profileData.gender, Validators.required]
-  });
+    age: [this.profileData ? this.profileData.age : '' , [Validators.required, Validators.max(150), Validators.min(0)]],
+    height: [this.profileData ? this.profileData.height : '', [Validators.required, Validators.max(300), Validators.min(10)]],
+    weight: [this.profileData ? this.profileData.weight : '', [Validators.required, Validators.max(300), Validators.min(2)]],
+    gender: [this.profileData ? this.profileData.gender : '', Validators.required]
+  })
 
 
   genders: {value: string, str: string}[] = [
@@ -34,10 +35,10 @@ export class ProfileComponent implements OnInit{
     {value: "male", str: "male"},
     {value: "female", str: "female"}
   ];
-
+  
   ngOnInit(): void {
-    this.training = JSON.parse(localStorage.getItem('trainingUserChose'));
-    console.log(this.training);
+    this.trainingsUserChose = JSON.parse(localStorage.getItem('trainingsUserChose'));
+    console.log(this.trainingsUserChose);
   }
 
   onSubmit(){

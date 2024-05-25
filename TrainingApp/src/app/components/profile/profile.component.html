@@ -16,7 +16,6 @@
     <button (click)="setNewAchievment()">add achievment</button>
     <div #container></div>
     <div *ngFor="let t of trainingsUserChose">
-        <div>123</div>
-        <app-training-item [training]="training"></app-training-item>
+        <app-training-item [training]="t"></app-training-item>
     </div>
 </form>
