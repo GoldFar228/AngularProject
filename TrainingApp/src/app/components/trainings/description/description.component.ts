@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, inject } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, inject } from '@angular/core';
 import { Hash } from 'crypto';
 import { TrainingDescription } from '../../../models/TrainingDescription.model';
 import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
 import { Training } from '../../../models/Training.model';
 import { DataTrainingService } from '../../../services/dataTrainings.service';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-description',
@@ -48,5 +47,12 @@ export class DescriptionComponent implements OnChanges {
   exit() {
     this.isVisible = false;
     this.isVisibleEmitter.emit(this.isVisible);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    if ((event.target as HTMLElement).className === 'description-container') {
+      this.exit()
+    }
   }
 }

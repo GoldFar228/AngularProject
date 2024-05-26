@@ -1,7 +1,7 @@
 .header-container{
     display: flex;
     justify-content: flex-end;
-    background-color: black;
+    background-color: #040D12;
 }
 .header-logo{
     margin-right: auto;

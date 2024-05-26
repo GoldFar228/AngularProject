@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, inject } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
@@ -21,7 +21,7 @@ export class TrainingsComponent implements OnInit{
   trainings: Training[];
   chosenTraining: Training;
   isVisible: boolean;
-  constructor(private trainingService: TrainingService){ }
+  private trainingService = inject(TrainingService);
 
   public searchString: string = '';
 
