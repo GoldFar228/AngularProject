@@ -3,6 +3,7 @@ import { DietsItemComponent } from './diets-item/diets-item.component';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-msg.component";
+import { DietsService } from '../../services/diets.service';
 
 @Component({
     selector: 'app-diets',
@@ -20,38 +21,26 @@ export class DietsComponent {
 //достаю данные из localStorage, чтобы затем вставить их в форму, для удобства пользователя
   profileData = JSON.parse(localStorage.getItem('profileData'));
   
+  dietsService = inject(DietsService);
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
-    age: [this.profileData.age, [Validators.required, Validators.max(150), Validators.min(0)]],
-    height: [this.profileData.height, [Validators.required, Validators.max(300), Validators.min(10)]],
-    weight: [this.profileData.weight, [Validators.required, Validators.max(300), Validators.min(2)]],
-    gender: [this.profileData.gender, Validators.required]
+    age: [this.profileData ? this.profileData.age : '' , [Validators.required, Validators.max(150), Validators.min(0)]],
+    height: [this.profileData ? this.profileData.height : '', [Validators.required, Validators.max(300), Validators.min(10)]],
+    weight: [this.profileData ? this.profileData.weight : '', [Validators.required, Validators.max(300), Validators.min(2)]],
+    gender: [this.profileData ? this.profileData.gender : '', Validators.required]
   })
   // age = localStorage.getItem('name');
+
   loseWeight: number;
   keepWeight: number;
   gainWeight: number;
 
   onSubmit(){
-    // console.log(this.age);
-    if(this.form.value.gender === "male"){
-      this.loseWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 + 5) * 1.2 * 0.8).toFixed(0)); //1.2 множитель - минимальный множитель активности. Чем выше активность, тем больше множитель
-      this.keepWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 + 5) * 1.2).toFixed(0));
-      this.gainWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 + 5) * 1.2 * 1.2).toFixed(0));
-    }
-
-    else if(this.form.value.gender === "female"){
-      this.loseWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 - 161) * 1.2 * 0.8).toFixed(0));
-      this.keepWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 - 161) * 1.2).toFixed(0));
-      this.gainWeight = +(((+this.form.value.weight * 10 + +this.form.value.height * 6.25
-        - +this.form.value.age * 5 - 161) * 1.2 * 1.2).toFixed(0));
-    }
+    this.dietsService.calculateCalories(this.form.value.weight, this.form.value.height, this.form.value.age, this.form.value.gender)
+    this.loseWeight = this.dietsService.loseWeight;
+    this.keepWeight = this.dietsService.keepWeight;
+    this.gainWeight = this.dietsService.gainWeight; 
   }
 
   public diets: { header: string; img: string; description: string; }[] = [
