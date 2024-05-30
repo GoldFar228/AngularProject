@@ -1,0 +1,8 @@
+
+<input type="text" placeholder="exercise" #exerciseName>
+<div *ngFor="let t of generatedInputs">
+    <input type="text" placeholder="reps" #reps>
+    <input type="text" placeholder="kg" *ngIf="styleTraining === true" #weights>
+</div>
+<input type="button" (click)="generateSession()" value="generate your session">
+<input type="button" (click)="getData()" value="save your training">

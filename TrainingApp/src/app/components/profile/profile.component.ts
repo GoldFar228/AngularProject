@@ -6,13 +6,17 @@ import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-ms
 import { Training } from '../../models/Training.model';
 import { TrainingItemComponent } from "../trainings/training-item/training-item.component";
 import { IfDirective } from '../../CustomDirectives/profileIf.directive';
+import { TrainingSessionComponent } from "./training-session/training-session.component";
+import { TrainingSession } from '../../models/TrainingSession.model';
+import { StoredTrainingSession } from '../../models/StoredTrainingSession.model';
+import { TrainingSessionService } from '../../services/trainingSession.service';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
-  imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective]
+    selector: 'app-profile',
+    standalone: true,
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css',
+    imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent]
 })
 export class ProfileComponent implements OnInit {
 
@@ -43,6 +47,7 @@ export class ProfileComponent implements OnInit {
       this.display = true;
     }
     console.log(this.trainingsUserChose);
+    this.setSessions();
   }
 
   onSubmit() {
@@ -69,21 +74,45 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  @ViewChild('achiveArea')
-  achievmentAreaEl: ElementRef;
+  
+  storedTrainingSession = new TrainingSessionService();
+  trainingSessionVisible: boolean = false
 
-  @ViewChild('container')
-  container: ElementRef;
-
-  setNewAchievment() {
-    const newDiv = document.createElement('div');
-    newDiv.textContent = this.achievmentAreaEl.nativeElement.value;
-    console.log(this.achievmentAreaEl.nativeElement.value);
-    this.container.nativeElement.appendChild(newDiv);
-
-    //TODO: сделать так, чтобы добавлялась на страницу запись с прогрессом пользователя, который он внесёт в textarea
+  sessionId: number;
+  show(){
+    // let storedTrainingSession = new TrainingSessionService();
+    let storedTrainingSession = new StoredTrainingSession();
+    console.log(storedTrainingSession.getId())
+    this.sessionId = storedTrainingSession.generateId();
+    console.log(this.sessionId)
+    this.trainingSessionVisible = true;
   }
 
+  isClicked: boolean = false;
+  isFreeWeight: boolean = false;
+  changeIsClicked(freeWeight: boolean){
+    this.isClicked = true;
+    this.isFreeWeight = freeWeight;
+  }
 
+  session: TrainingSession[]
+  setSessions(){
+    this.session = JSON.parse(localStorage.getItem(''));
+    console.log(this.session);
+  }
 
+  trainingSessionService = inject(TrainingSessionService);
+  
+  saveTrainingSession(){
+    let trainingSession: TrainingSession[] = JSON.parse(localStorage.getItem(''));
+    const neededData = trainingSession.filter(item => item.sessionId === this.sessionId)
+    console.log('needed data',neededData);
+    let storedTrainingSession: StoredTrainingSession = new StoredTrainingSession();
+    storedTrainingSession.id = this.sessionId;
+    storedTrainingSession.trainingSessions = neededData;
+    console.log('stored training session',storedTrainingSession)
+    this.trainingSessionService.addTrainingSessionToStoredSession(this.sessionId, storedTrainingSession);
+    // this.trainingSessionService.addTrainingSessionToStoredSession(this.sessionId, trainingSession[this.sessionId]);
+  }
+  
 }

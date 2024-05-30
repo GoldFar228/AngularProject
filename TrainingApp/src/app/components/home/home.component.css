@@ -29,3 +29,19 @@
 .home-content{
     font-size: 40px;
 }
+
+.healthy-container{
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 0 20px;
+}
+.healthy-container h2{
+    font-size: 36px;
+}
+.healthy-content{
+    margin-right: 10px;
+    font-size: 24px;
+}
+.healthy-container img{
+    width: 40%;
+}

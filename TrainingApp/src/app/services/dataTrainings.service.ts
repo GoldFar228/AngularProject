@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../models/Training.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +19,29 @@ export class DataTrainingService {
     return this.trainings.asObservable();
   }
   public addItem(newTraining: Training): void {
-    const currentTrainings = this.trainings.getValue();
-    const updatedTrainings = [...currentTrainings, newTraining];
-    this.trainings.next(updatedTrainings);
-    this.saveDataToLocalStorage(updatedTrainings);
+    console.log(this.trainings);
+    // localStorage.removeItem('trainingsUserChose');
+    const subscription = this.trainings.pipe(take(1)).subscribe(value => {
+
+      console.log('Текущее значение:', value);
+
+      // localStorage.removeItem('trainingsUserChose')
+      const currentTrainings = this.trainings.getValue();
+      if (currentTrainings.some(training => training.header === newTraining.header)) {
+        console.log('Training already exists');
+      } else {
+        const updatedTrainings = [...currentTrainings, newTraining];
+        this.trainings.next(updatedTrainings);
+        this.saveDataToLocalStorage(updatedTrainings);
+      }
+
+    })
+    subscription.unsubscribe();
   }
   private saveDataToLocalStorage(trainings: Training[]) {
-    if (this.trainings.getValue() === trainings) {
-      console.log("This training is already exist")
-    }
-    else {
-      localStorage.setItem('trainingsUserChose', JSON.stringify(trainings));
-    }
+    console.log(this.trainings.getValue().toString() + " " + trainings)
+
+    localStorage.setItem('trainingsUserChose', JSON.stringify(trainings));
 
   }
 }
