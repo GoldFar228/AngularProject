@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { DetailService } from '../../../services/detail.servise';
+import { TrainingDetail } from '../../../models/TrainingDetail';
 
 @Component({
   selector: 'app-training-detail',
@@ -20,5 +22,6 @@ export class TrainingDetailComponent implements OnInit {
         )
         .subscribe(data=> this.id = +data);
       }
-
+    detailsService = inject(DetailService)
+    details : TrainingDetail[] = this.detailsService.getData()
 }
