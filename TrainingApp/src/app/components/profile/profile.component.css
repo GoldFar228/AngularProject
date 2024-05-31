@@ -1,0 +1,31 @@
+.profile-container{
+    margin: 20px 40px;
+}
+.profile-form-container{
+    border: 1px solid black;
+}
+.profile-form-container input{
+    width: 300px;
+    height: 25px;
+}
+.profile-trainings{
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.profile-trainings h2{
+    text-align: center;
+    background: #040D12;
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.trainings-container{
+    display: flex;
+    margin: 20px 0;
+}
+
+.trainings-container .training{
+    margin-right: 10px;
+}

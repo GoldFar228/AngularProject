@@ -20,22 +20,13 @@ export class AppComponent implements OnInit {
   http = inject(HttpClient)
 
   ngOnInit():void {
-    this.http.get<{user: UserInterface}>('https://api.realworld.io/api/user').subscribe({
-      next: (response) => {
-        this.authService.currentUserSig.set(response.user);
-      },
-      error: () => {
-        this.authService.currentUserSig.set(null);
-      }
-    }); 
+   this.authService.auth();
   }
 
   login(): void{
-    document.location.href = "/";
-  }
-
+    this.authService.login();
+  } 
   logout(): void{
-    localStorage.setItem('token', '');
-    this.authService.currentUserSig.set(null)
+    this.authService.logout();
   }
 }

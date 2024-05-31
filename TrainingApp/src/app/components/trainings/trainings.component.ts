@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, inject,  ViewChild } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
@@ -19,10 +19,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class TrainingsComponent implements OnInit{
 
   trainings: Training[];
-
   showBlock = false;
-
-  constructor(private trainingService: TrainingService){ }
+  chosenTraining: Training;
+  isVisible: boolean;
+  private trainingService = inject(TrainingService);
 
   public searchString: string = '';
 
@@ -35,7 +35,11 @@ export class TrainingsComponent implements OnInit{
     console.log(this.searchString);
   }
   handler(training): void{
-    training.des = !training.des
+    this.chosenTraining = training;
+    this.chosenTraining.des = true;
+  }
+  setIsVisible(e: boolean){
+    this.chosenTraining.des = e
   }
   @ViewChild(IndexMassComponent) infoComponent: IndexMassComponent | undefined;
 

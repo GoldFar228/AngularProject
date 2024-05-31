@@ -1,11 +1,28 @@
-<form [formGroup]="form">
-    <div class="profile-container">
-        <input type="text" placeholder="age" formControlName="age"> <br>
-        <select formControlName="gender">
-            <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
-        </select> <br>
-        <input type="text" placeholder="height" formControlName="height"> <br>
-        <input type="text" placeholder="weight" formControlName="weight"> <br>
+<div class="profile-container">
+    <form [formGroup]="form">
+        <div class="profile-form-container">
+            <input type="text" placeholder="age" formControlName="age"> <br>
+            <app-validator-msg [control]="form.controls['age']" [errorMessage]="'age must not be empty'"></app-validator-msg>
+            <select formControlName="gender">
+                <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
+            </select> <br>
+            <input type="text" placeholder="height" formControlName="height"> <br>
+            <app-validator-msg [control]="form.controls['height']" [errorMessage]="'height must not be empty'"></app-validator-msg>
+            <input type="text" placeholder="weight" formControlName="weight"> <br>
+            <app-validator-msg [control]="form.controls['weight']" [errorMessage]="'weight must not be empty'"></app-validator-msg>
+        </div>
+        <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button><br>
+    
+        <textarea placeholder="Enter your achievments" #achiveArea></textarea>
+        <button (click)="setNewAchievment()">add achievment</button>
+        <div #container></div>
+    </form>
+    <div class="profile-trainings" *profileIf="display">
+        <h2>Your trainings</h2>
+        <div class="trainings-container">
+            <div class="training" *ngFor="let t of trainingsUserChose">
+                <app-training-item [training]="t"></app-training-item>
+            </div>
+        </div>
     </div>
-    <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button>
-</form>
+</div>

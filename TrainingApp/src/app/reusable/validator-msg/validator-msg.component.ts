@@ -15,4 +15,5 @@ export class ValidatorMsgComponent {
 
   @Input()
   public errorMessage: string;
+
 }

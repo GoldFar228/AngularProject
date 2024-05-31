@@ -4,26 +4,16 @@
         <div class="input-container">
             <label>Username: </label>
             <input type="text" placeholder="Username" formControlName="username"> <br>
-            <span class="helper-text" *ngIf="form.get('username').invalid && form.get('email').touched">Username mustn't be empty</span>
-        </div>
+            <app-validator-msg [control]="form.controls['username']"></app-validator-msg>   </div>
         <div class="input-container">
             <label>Email: </label>
             <input type="text" placeholder="E-mail" formControlName="email"><br>
-            <span class="helper-text" *ngIf="form.get('email').invalid && form.get('email').touched">
-                <span *ngIf="form.get('email').errors['required']">Email must not be empty.</span>
-                <span *ngIf="form.get('email').errors['email']">Email is incorrect.</span>
-            </span>
+            <app-validator-msg [control]="form.controls['email']"></app-validator-msg>
         </div>
         <div class="input-container">
             <label>Password: </label>
             <input type="password" placeholder="Password" formControlName="password"><br>
-            <span class="helper-text" *ngIf="form.get('password').invalid && form.get('email').touched">
-                <span *ngIf="form.get('password').errors['required']">Password must not be empty.</span>
-                <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
-                    Password must be at least {{form.get('password').errors['minlength']['requiredLength']}} symbols.
-                    Now it's {{form.get('password').errors['minlength']['actualLength']}} symbols.
-                </span>
-            </span>
+            <app-validator-msg [control]="form.controls['password']"></app-validator-msg>
         </div>
         <button type="submit" class="submit-button">Register</button>
         <div class="login" class="login">Already have an account? Click <a routerLink="">here</a></div>

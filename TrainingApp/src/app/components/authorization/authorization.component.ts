@@ -6,11 +6,12 @@ import { response } from 'express';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ValidatorMsgComponent } from '../../reusable/validator-msg/validator-msg.component';
 
 @Component({
   selector: 'app-authorization',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent],
   templateUrl: './authorization.component.html',
   styleUrl: './authorization.component.css'
 })
@@ -31,11 +32,6 @@ export class AuthorizationComponent {
   });
 
   onSubmit(){
-    this.http.post<{user: UserInterface}>('https://api.realworld.io/api/users', {user: this.form.getRawValue(), }
-    ).subscribe(response => {
-      localStorage.setItem('token', response.user.token);
-      this.authService.currentUserSig.set(response.user);
-      this.router.navigateByUrl('/home');
-  });
+    this.authService.registration(this.form);
   }
 }

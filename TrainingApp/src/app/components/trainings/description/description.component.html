@@ -1,3 +1,13 @@
-<div class = 'descriptions'>
-        <h1>{{descriptions[name]}}</h1>
+<div class="description-container" *ngIf="isVisible">
+    <div class="description">
+        <span class="close-description" (click)="exit()">X</span>
+        <img [src]="imgPath" alt="">
+        <div class="descriptions" *ngFor="let d of descriptions">
+            <div *ngIf="name == d.name">
+                <h3>{{d.name}}</h3>
+                <h1>{{d.descr}}</h1>
+            </div>
+        </div>
+        <div class="add-button" (click)="addTraining()">add</div>
+    </div>
 </div>

@@ -35,4 +35,7 @@ export class TrainingService {
   addItem(newTraining: Training): void{
     this.trainings.push(newTraining);
   }
+  getTrainingByHeader(header: string): Training{
+    return this.trainings.find(t => t.header === header)
+  }
 }

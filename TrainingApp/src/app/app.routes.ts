@@ -28,6 +28,4 @@ export const routes: Routes = [
     {path: 'detail/:id', loadComponent: () =>
         import('./components/trainings/training-detail/training-detail.component').then(
             (m) => m.TrainingDetailComponent), canActivate: [AuthGuard]},
-];
-
-
+      ]
