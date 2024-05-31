@@ -6,9 +6,18 @@
     <div class="training" *ngFor="let t of trainings">
         <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t" (click)="handler(t)">
         </app-training-item>
+        <div>
+          <a routerLink="/detail/{{t.sequence_number}}">Details</a>
+          <router-outlet></router-outlet>
+        </div>
     </div>
     <div *ngIf="chosenTraining">    
         <app-description class="descriptions" [name]="chosenTraining.header" [isVisible]="chosenTraining.des" (isVisibleEmitter)="setIsVisible($event)"></app-description>
     </div>
 </div>
 <app-index-mass></app-index-mass>
+<button class="recomend"(click)="show()">Recommended workouts</button>
+<div class="trainings1" *ngFor="let t of trainings" >
+    <app-training-item *ngIf="t.tag1.toLocaleLowerCase() === recomend() && showBlock"  [training]="t"></app-training-item>
+</div>
+

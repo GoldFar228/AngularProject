@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
@@ -9,7 +9,7 @@ import { UserInterface } from './models/user.interface';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, HomeComponent],
+  imports: [RouterOutlet, HeaderComponent, HomeComponent, RouterLinkWithHref],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,17 +1,31 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { AuthorizationComponent } from './components/authorization/authorization.component';
-import { TrainingsComponent } from './components/trainings/trainings.component';
-import { DietsComponent } from './components/diets/diets.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { TrainingDetailComponent } from './components/trainings/training-detail/training-detail.component';
 import { AuthGuard } from './guards/authGuard.guard';
 
 export const routes: Routes = [
-    {path: '', component: AuthenticationComponent },
-    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-    {path: 'registration', component: AuthorizationComponent},
-    {path: 'trainings', component: TrainingsComponent, canActivate: [AuthGuard]},
-    {path: 'diets', component: DietsComponent, canActivate: [AuthGuard]},
-    {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-];
+    {path: '', loadComponent: () =>
+        import('./components/authentication/authentication.component').then(
+            (m) => m.AuthenticationComponent
+        ), canActivate: [AuthGuard] },
+    {path: 'home', loadComponent: () =>
+        import('./components/home/home.component').then(
+            (m) => m.HomeComponent
+        ), canActivate: [AuthGuard]},
+    {path: 'registration', loadComponent: () =>
+        import('./components/authorization/authorization.component').then(
+            (m) => m.AuthorizationComponent
+        ), canActivate: [AuthGuard]},
+    {path: 'trainings', loadComponent: () =>
+        import('./components/trainings/trainings.component').then(
+            (m) => m.TrainingsComponent
+        ), canActivate: [AuthGuard]},
+    {path: 'diets', loadComponent: () =>
+        import('./components/diets/diets.component').then(
+            (m) => m.DietsComponent), canActivate: [AuthGuard]},
+    {path: 'profile', loadComponent: () =>
+        import('./components/profile/profile.component').then(
+            (m) => m.ProfileComponent), canActivate: [AuthGuard]},
+    {path: 'detail/:id', loadComponent: () =>
+        import('./components/trainings/training-detail/training-detail.component').then(
+            (m) => m.TrainingDetailComponent), canActivate: [AuthGuard]},
+      ]

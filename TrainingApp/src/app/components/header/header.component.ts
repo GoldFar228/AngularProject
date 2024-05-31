@@ -22,13 +22,13 @@ export class HeaderComponent {
   
   authService = inject(AuthService)
   
-  public redirect(e: any): void{
-    if(e.target.textContent === "Logout")
-      document.location.href="/registration";
-    else{
-      document.location.href="/home";
-    }
-  }
+  // public redirect(e: any): void{
+  //   if(e.target.textContent === "Logout")
+  //     document.location.href="/registration";
+  //   else{
+  //     document.location.href="/home";
+  //   }
+  // }
 
   @Input()
   logout: Function;

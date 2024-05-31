@@ -5,5 +5,6 @@ export class Training {
     tag1Img: string;
     tag2: string;
     tag2Img: string;
-    des: boolean
+    des: boolean;
+    sequence_number: number;
 }
