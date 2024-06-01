@@ -18,11 +18,11 @@ export class DietsComponent {
     {value: "male", str: "male"},
     {value: "female", str: "female"}
 ]
-//достаю данные из localStorage, чтобы затем вставить их в форму, для удобства пользователя
-  profileData = JSON.parse(localStorage.getItem('profileData'));
+
+public profileData = JSON.parse(localStorage.getItem('profileData'));
   
-  dietsService = inject(DietsService);
-  fb = inject(FormBuilder);
+  public dietsService = inject(DietsService);
+  public fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
     age: [this.profileData ? this.profileData.age : '' , [Validators.required, Validators.max(150), Validators.min(0)]],
@@ -30,11 +30,11 @@ export class DietsComponent {
     weight: [this.profileData ? this.profileData.weight : '', [Validators.required, Validators.max(300), Validators.min(2)]],
     gender: [this.profileData ? this.profileData.gender : '', Validators.required]
   })
-  // age = localStorage.getItem('name');
+  
 
-  loseWeight: number;
-  keepWeight: number;
-  gainWeight: number;
+  public loseWeight: number;
+  public keepWeight: number;
+  public gainWeight: number;
 
   onSubmit(){
     this.dietsService.calculateCalories(this.form.value.weight, this.form.value.height, this.form.value.age, this.form.value.gender)

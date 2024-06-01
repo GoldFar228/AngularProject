@@ -7,7 +7,7 @@ import { TrainingDescription } from '../models/TrainingDescription.model';
 })
 export class DescriptionService {
 
-    private descriptions: TrainingDescription[] =
+    private _descriptions: TrainingDescription[] =
         [{
             name: "Increase your bench press",
             descr: "You wanna increase your bench press? Well, we've got right training for you. Get ready, it will be hard."
@@ -23,10 +23,10 @@ export class DescriptionService {
             This excercise for you upper chest growth",
         }];
 
-    getData(): TrainingDescription[] {
-        return this.descriptions;
+    public getData(): TrainingDescription[] {
+        return this._descriptions;
     }
-    addItem(newTrainingDescription: TrainingDescription): void {
-        this.descriptions.push(newTrainingDescription);
+    public addItem(newTrainingDescription: TrainingDescription): void {
+        this._descriptions.push(newTrainingDescription);
     }
 }

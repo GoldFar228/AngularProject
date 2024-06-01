@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, inject } from '@angular/core';
-import { Hash } from 'crypto';
+import {  Component, EventEmitter, HostListener, Input, OnChanges, Output, inject } from '@angular/core';
 import { TrainingDescription } from '../../../models/TrainingDescription.model';
 import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
@@ -15,42 +14,39 @@ import { DataTrainingService } from '../../../services/dataTrainings.service';
   styleUrl: './description.component.css'
 })
 export class DescriptionComponent implements OnChanges {
-  descriptionService = inject(DescriptionService);
-  trainingService = inject(TrainingService);
+  public descriptionService = inject(DescriptionService);
+  public trainingService = inject(TrainingService);
 
-  trainings: Training[] = this.trainingService.getData();
-  descriptions: TrainingDescription[] = this.descriptionService.getData();
+  public trainings: Training[] = this.trainingService.getData();
+  public descriptions: TrainingDescription[] = this.descriptionService.getData();
 
   @Input() name!: string;
 
   @Input() isVisible: boolean;
   @Output() isVisibleEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-  imgPath: string = '';
+  public imgPath: string = '';
 
   ngOnChanges() {
-    console.log(this.trainingService.getTrainingByHeader(this.name).img);
     this.imgPath = this.trainingService.getTrainingByHeader(this.name).img;
   }
 
-  trainingsUserChoseJSON?: string = localStorage.getItem('trainingsUserChose');
+  public trainingsUserChoseJSON?: string = localStorage.getItem('trainingsUserChose');
 
-  trainingsUserChose: Training[] = JSON.parse(this.trainingsUserChoseJSON);
+  public trainingsUserChose: Training[] = JSON.parse(this.trainingsUserChoseJSON);
 
-  dataTrainingsService = inject(DataTrainingService)
-  addTraining() {
+  public dataTrainingsService = inject(DataTrainingService)
+  public addTraining(): void {
     const newTraining = this.trainingService.getTrainingByHeader(this.name);
-    console.log(newTraining);
     this.dataTrainingsService.addItem(newTraining);
-    console.log(localStorage.getItem('trainingsUserChose'));
   }
 
-  exit() {
+  public exit(): void {
     this.isVisible = false;
     this.isVisibleEmitter.emit(this.isVisible);
   }
 
   @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
+  public onClick(event: MouseEvent) {
     if ((event.target as HTMLElement).className === 'description-container') {
       this.exit()
     }

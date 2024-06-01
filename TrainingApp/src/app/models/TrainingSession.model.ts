@@ -1,6 +1,6 @@
 export class TrainingSession {
-    name: string;
-    reps: string[];
-    weight?: string[];
-    sessionId: number;
+    public name: string;
+    public reps: string[];
+    public weight?: string[];
+    public sessionId: number;
 }

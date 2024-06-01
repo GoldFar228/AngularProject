@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class FiltersComponent {
   @Output()
   searchTextChange: EventEmitter<string> = new EventEmitter<string>
   
-  onSearchTextChange(e: any){
+  onSearchTextChange(e: any): void{
     this.searchText = e.target.value;
     this.searchTextChange.emit(this.searchText);
   }

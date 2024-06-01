@@ -1,6 +1,6 @@
 export class ProfileData {
-    age: number;
-    weight: number;
-    height: number;
-    gender: string;
+    public age: number;
+    public weight: number;
+    public height: number;
+    public gender: string;
 }

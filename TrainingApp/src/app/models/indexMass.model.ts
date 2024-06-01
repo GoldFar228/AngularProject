@@ -1,4 +1,4 @@
 export class Index{
-    weight: number;
-    height: number
+    public weight: number;
+    public height: number
   }

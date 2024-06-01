@@ -1,4 +1,4 @@
 export class TrainingDescription {
-    name: string;
-    descr: string;
+    public name: string;
+    public descr: string;
 }

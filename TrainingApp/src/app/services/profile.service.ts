@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TrainingSession } from '../models/TrainingSession.model';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { StoredTrainingSession } from '../models/StoredTrainingSession.model';
 
 @Injectable({
@@ -8,17 +8,17 @@ import { StoredTrainingSession } from '../models/StoredTrainingSession.model';
 })
 export class ProfileService {
 
-  private trainingSessions = new BehaviorSubject<TrainingSession[]>([]);
-  private storedTrainingSessions = new BehaviorSubject<StoredTrainingSession[]>([]);
+  private _trainingSessions = new BehaviorSubject<TrainingSession[]>(JSON.parse(localStorage.getItem('userTrainingSession')) || []);
+  private _storedTrainingSessions = new BehaviorSubject<StoredTrainingSession[]>(JSON.parse(localStorage.getItem('userTrainingSession')) || []);
+
+  public get getStoredTrainingSessions(): Observable<StoredTrainingSession[]>{
+    return this._storedTrainingSessions.asObservable();
+  };
 
   public addTrainingSessionToStoredSession(newTrainingSession: StoredTrainingSession): void {
-    console.log(newTrainingSession)
-    const storedSessions = JSON.parse(localStorage.getItem('userTrainingSession')) || [];
-    this.storedTrainingSessions = new BehaviorSubject<StoredTrainingSession[]>(storedSessions);
-    this.storedTrainingSessions.pipe(take(1)).subscribe(value => {
-      const storedSessions = value;
+    this._storedTrainingSessions.pipe(take(1)).subscribe(value => {
       let updatedStoredSession = [...value, newTrainingSession];
-      this.storedTrainingSessions.next(updatedStoredSession);
+      this._storedTrainingSessions.next(updatedStoredSession);
       localStorage.setItem('userTrainingSession', JSON.stringify(updatedStoredSession));
     });
   }
@@ -26,10 +26,10 @@ export class ProfileService {
   public removeAllItems(){
     localStorage.removeItem('');
     localStorage.removeItem('userTrainingSession')
-    this.trainingSessions.next(null);
-    this.storedTrainingSessions.next(null);
+    this._trainingSessions.next(null);
+    this._storedTrainingSessions.next(null);
   }
-  public removeItem(session: StoredTrainingSession){
+  public removeItem(session: StoredTrainingSession): void{
   
     const storedData = JSON.parse(localStorage.getItem('userTrainingSession'));
     const objectIdToDelete = session.id;

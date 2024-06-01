@@ -11,9 +11,9 @@ import { Index } from '../../../models/indexMass.model';
 })
 
 export class IndexMassComponent {
-  number: number = 0;
-  index: Index = {weight: NaN, height: NaN}
-  logIndex(weight: NgModel, height: NgModel){
+  public number: number = 0;
+  public index: Index = {weight: NaN, height: NaN}
+  public logIndex(weight: NgModel, height: NgModel): void{
     this.index = {weight: weight.model, height: height.model}
   }
 }

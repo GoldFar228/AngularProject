@@ -5,9 +5,7 @@ import { FiltersComponent } from "./filters/filters.component";
 import { Training } from '../../models/Training.model';
 import { TrainingService } from '../../services/trainings.service';
 import { DescriptionComponent } from './description/description.component';
-import { Console } from 'console';
 import { IndexMassComponent } from './index-mass/index-mass.component';
-import { IndexMassPipe } from '../../Pipes/im.pipe';
 
 @Component({
     selector: 'app-trainings',
@@ -18,26 +16,26 @@ import { IndexMassPipe } from '../../Pipes/im.pipe';
 })
 export class TrainingsComponent implements OnInit{
 
-  trainings: Training[];
-  chosenTraining: Training;
-  isVisible: boolean;
-  private trainingService = inject(TrainingService);
+  public trainings: Training[];
+  public chosenTraining: Training;
+  public isVisible: boolean;
+  private _trainingService = inject(TrainingService);
 
   public searchString: string = '';
 
   ngOnInit(): void {
-    this.trainings = this.trainingService.getData();
+    this.trainings = this._trainingService.getData();
   }
 
-  setSearchString(e: string): void{
+  public setSearchString(e: string): void{
     this.searchString = e;
     console.log(this.searchString);
   }
-  handler(training): void{
+  public handler(training: Training): void{
     this.chosenTraining = training;
     this.chosenTraining.des = true;
   }
-  setIsVisible(e: boolean){
+  public setIsVisible(e: boolean): void{
     this.chosenTraining.des = e
   }
 }

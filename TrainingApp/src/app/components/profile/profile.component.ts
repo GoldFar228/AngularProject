@@ -96,11 +96,13 @@ export class ProfileComponent implements OnInit {
   }
 
   session: StoredTrainingSession[];
+  sessionService = inject(ProfileService);
+
+  session$ = this.sessionService.getStoredTrainingSessions;
   trainingForSession: TrainingSession[];
   setSessions() {
     this.session = JSON.parse(localStorage.getItem('userTrainingSession'));
     this.trainingForSession = JSON.parse(localStorage.getItem(''));
-    console.log(this.session);
   }
 
   trainingSessionService = inject(TrainingSessionService);
