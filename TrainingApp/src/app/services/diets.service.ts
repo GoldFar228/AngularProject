@@ -18,7 +18,6 @@ export class DietsService {
           this.gainWeight = +(((+weight * 10 + +height * 6.25
             - +age * 5 + 5) * 1.2 * 1.2).toFixed(0));
         }
-    
         else if(gender === "female"){
           this.loseWeight = +(((+weight * 10 + +height * 6.25
             - +age * 5 - 161) * 1.2 * 0.8).toFixed(0));

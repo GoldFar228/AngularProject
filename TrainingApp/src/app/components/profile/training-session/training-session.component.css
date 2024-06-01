@@ -1,0 +1,14 @@
+.training-session-container{
+    display: flex;
+    align-items: center;
+}
+.generated-input{
+    width: 35px;
+}
+.input-row{
+    height: fit-content;
+}
+.button-training-session{
+    border-radius: 10px;
+    padding: 0 5px;
+}

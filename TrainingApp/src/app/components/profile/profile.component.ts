@@ -6,13 +6,18 @@ import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-ms
 import { Training } from '../../models/Training.model';
 import { TrainingItemComponent } from "../trainings/training-item/training-item.component";
 import { IfDirective } from '../../CustomDirectives/profileIf.directive';
+import { TrainingSessionComponent } from "./training-session/training-session.component";
+import { TrainingSession } from '../../models/TrainingSession.model';
+import { StoredTrainingSession } from '../../models/StoredTrainingSession.model';
+import { TrainingSessionService } from '../../services/trainingSession.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective]
+  imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent]
 })
 export class ProfileComponent implements OnInit {
 
@@ -21,6 +26,7 @@ export class ProfileComponent implements OnInit {
   training: Training;
   display: boolean;
 
+  profileService = inject(ProfileService)
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
@@ -30,7 +36,6 @@ export class ProfileComponent implements OnInit {
     gender: [this.profileData ? this.profileData.gender : '', Validators.required]
   })
 
-
   genders: { value: string, str: string }[] = [
     { value: "", str: "--sex--" },
     { value: "male", str: "male" },
@@ -39,10 +44,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.trainingsUserChose = JSON.parse(localStorage.getItem('trainingsUserChose'));
-    if(this.trainingsUserChose !== null){
+    if (this.trainingsUserChose !== null) {
       this.display = true;
     }
-    console.log(this.trainingsUserChose);
+    this.setSessions();
   }
 
   onSubmit() {
@@ -69,21 +74,47 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  @ViewChild('achiveArea')
-  achievmentAreaEl: ElementRef;
+  storedTrainingSession = new TrainingSessionService();
+  trainingSessionVisible: boolean = false
 
-  @ViewChild('container')
-  container: ElementRef;
-
-  setNewAchievment() {
-    const newDiv = document.createElement('div');
-    newDiv.textContent = this.achievmentAreaEl.nativeElement.value;
-    console.log(this.achievmentAreaEl.nativeElement.value);
-    this.container.nativeElement.appendChild(newDiv);
-
-    //TODO: сделать так, чтобы добавлялась на страницу запись с прогрессом пользователя, который он внесёт в textarea
+  sessionId: number;
+  show() {
+    let storedTrainingSession = new StoredTrainingSession();
+    this.sessionId = storedTrainingSession.generateId();
+    this.trainingSessionVisible = true;
   }
 
+  delete() {
+    this.profileService.removeAllItems();
+  }
 
+  isClicked: boolean = false;
+  isFreeWeight: boolean = false;
+  changeIsClicked(freeWeight: boolean) {
+    this.isClicked = true;
+    this.isFreeWeight = freeWeight;
+  }
 
+  session: StoredTrainingSession[];
+  trainingForSession: TrainingSession[];
+  setSessions() {
+    this.session = JSON.parse(localStorage.getItem('userTrainingSession'));
+    this.trainingForSession = JSON.parse(localStorage.getItem(''));
+    console.log(this.session);
+  }
+
+  trainingSessionService = inject(TrainingSessionService);
+
+  saveTrainingSession() {
+    let trainingSession: TrainingSession[] = JSON.parse(localStorage.getItem('')) || [];
+    const neededData = trainingSession.reverse().filter(item => item.sessionId === this.sessionId)
+    let storedTrainingSession: StoredTrainingSession = new StoredTrainingSession();
+    storedTrainingSession.id = this.sessionId;
+    storedTrainingSession.trainingSessions = neededData;
+    this.profileService.addTrainingSessionToStoredSession(storedTrainingSession);
+  }
+
+  deleteCurrentSession(session: StoredTrainingSession) {
+    this.profileService.removeItem(session);
+  }
 }
