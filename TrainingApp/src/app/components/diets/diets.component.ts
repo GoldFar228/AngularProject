@@ -55,5 +55,7 @@ public profileData = JSON.parse(localStorage.getItem('profileData'));
       description: '',
     }
   ]
-  
+  throwError() {
+    throw new Error('This is an artificial error');
+  }
 }

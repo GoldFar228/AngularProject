@@ -1,11 +1,23 @@
+
 .trainings{
     display: flex;
-    margin-left: 50px;
+    margin-left: 30px;
     margin-right: auto;
+    margin-bottom: 15px;
 }
 .trainings.descriptions{
     display: flex;
     margin-left: 500px;
     margin-right: auto;
     justify-content: center;
+}
+
+.training-container{
+    border: 2px solid black;
+}
+.filters{
+    margin-bottom: 15px;
+    padding-left: 20px;
+    background: rgb(214, 214, 214);
+    border-bottom: 2px solid black;
 }
