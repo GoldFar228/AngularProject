@@ -3,6 +3,7 @@ import { Component, ContentChild, ElementRef, Input, OnInit, QueryList, ViewChil
 import { TrainingSessionService } from '../../../services/trainingSession.service';
 import { TrainingSession } from '../../../models/TrainingSession.model';
 import { StoredTrainingSession } from '../../../models/StoredTrainingSession.model';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-training-session',
@@ -15,11 +16,8 @@ export class TrainingSessionComponent{
   @Input()
   styleTraining: boolean;
 
-  @Input()
-  setsQuantity: number;
 
   trainingSession: TrainingSession;
-  trainingSessions: TrainingSession[];//возможно не нужно
   trainingSessionService = inject(TrainingSessionService);
   storedTrainingSession = new StoredTrainingSession;
 
@@ -27,17 +25,7 @@ export class TrainingSessionComponent{
   generatedInputs: number[] = [];
   outputString: string = '';
 
-  generateSession() {
-    for (let s = 0; s < this.setsQuantity; s++) {
-      this.generatedInputs.push(s);
-      console.log(this.generatedInputs, " ", s)
-    }
-  }
-  saveSession() {
-    for (let gI = 0; gI < this.generatedInputs.length; gI++) {
-      this.outputString += "";
-    }
-  }
+
   @ViewChildren('reps')
   reps: QueryList<ElementRef>;
   @ViewChildren('weights')
@@ -51,6 +39,12 @@ export class TrainingSessionComponent{
 
   @Input()
   sessionId: number;
+
+  generateSession(setsQuantity) {
+    for (let s = 0; s < setsQuantity; s++) {
+      this.generatedInputs.push(s);
+    }
+  }
 
   getData() {
     let trainingSession = this.trainingSessionService.createNewObject()
@@ -67,7 +61,10 @@ export class TrainingSessionComponent{
       trainingSession.reps.push(element.nativeElement.value);
     })
     this.trainingSessionService.addItem(trainingSession);
-    // localStorage.setItem('userTrainingSession', JSON.stringify(trainingSession));
-    // console.log(localStorage.getItem('userTrainingSession'));
+  }
+  inputs = [];
+
+  generateInputs() {
+    this.inputs.push(this.inputs.length + 1);
   }
 }

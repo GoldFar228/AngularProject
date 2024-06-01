@@ -10,13 +10,14 @@ import { TrainingSessionComponent } from "./training-session/training-session.co
 import { TrainingSession } from '../../models/TrainingSession.model';
 import { StoredTrainingSession } from '../../models/StoredTrainingSession.model';
 import { TrainingSessionService } from '../../services/trainingSession.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
-    selector: 'app-profile',
-    standalone: true,
-    templateUrl: './profile.component.html',
-    styleUrl: './profile.component.css',
-    imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent]
+  selector: 'app-profile',
+  standalone: true,
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css',
+  imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent]
 })
 export class ProfileComponent implements OnInit {
 
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   training: Training;
   display: boolean;
 
+  profileService = inject(ProfileService)
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
@@ -34,7 +36,6 @@ export class ProfileComponent implements OnInit {
     gender: [this.profileData ? this.profileData.gender : '', Validators.required]
   })
 
-
   genders: { value: string, str: string }[] = [
     { value: "", str: "--sex--" },
     { value: "male", str: "male" },
@@ -43,10 +44,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.trainingsUserChose = JSON.parse(localStorage.getItem('trainingsUserChose'));
-    if(this.trainingsUserChose !== null){
+    if (this.trainingsUserChose !== null) {
       this.display = true;
     }
-    console.log(this.trainingsUserChose);
     this.setSessions();
   }
 
@@ -74,45 +74,47 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  
   storedTrainingSession = new TrainingSessionService();
   trainingSessionVisible: boolean = false
 
   sessionId: number;
-  show(){
-    // let storedTrainingSession = new TrainingSessionService();
+  show() {
     let storedTrainingSession = new StoredTrainingSession();
-    console.log(storedTrainingSession.getId())
     this.sessionId = storedTrainingSession.generateId();
-    console.log(this.sessionId)
     this.trainingSessionVisible = true;
+  }
+
+  delete() {
+    this.profileService.removeAllItems();
   }
 
   isClicked: boolean = false;
   isFreeWeight: boolean = false;
-  changeIsClicked(freeWeight: boolean){
+  changeIsClicked(freeWeight: boolean) {
     this.isClicked = true;
     this.isFreeWeight = freeWeight;
   }
 
-  session: TrainingSession[]
-  setSessions(){
-    this.session = JSON.parse(localStorage.getItem(''));
+  session: StoredTrainingSession[];
+  trainingForSession: TrainingSession[];
+  setSessions() {
+    this.session = JSON.parse(localStorage.getItem('userTrainingSession'));
+    this.trainingForSession = JSON.parse(localStorage.getItem(''));
     console.log(this.session);
   }
 
   trainingSessionService = inject(TrainingSessionService);
-  
-  saveTrainingSession(){
-    let trainingSession: TrainingSession[] = JSON.parse(localStorage.getItem(''));
-    const neededData = trainingSession.filter(item => item.sessionId === this.sessionId)
-    console.log('needed data',neededData);
+
+  saveTrainingSession() {
+    let trainingSession: TrainingSession[] = JSON.parse(localStorage.getItem('')) || [];
+    const neededData = trainingSession.reverse().filter(item => item.sessionId === this.sessionId)
     let storedTrainingSession: StoredTrainingSession = new StoredTrainingSession();
     storedTrainingSession.id = this.sessionId;
     storedTrainingSession.trainingSessions = neededData;
-    console.log('stored training session',storedTrainingSession)
-    this.trainingSessionService.addTrainingSessionToStoredSession(this.sessionId, storedTrainingSession);
-    // this.trainingSessionService.addTrainingSessionToStoredSession(this.sessionId, trainingSession[this.sessionId]);
+    this.profileService.addTrainingSessionToStoredSession(storedTrainingSession);
   }
-  
+
+  deleteCurrentSession(session: StoredTrainingSession) {
+    this.profileService.removeItem(session);
+  }
 }

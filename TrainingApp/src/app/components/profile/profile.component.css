@@ -1,44 +1,155 @@
-.profile-container{
+.profile-container {
     display: flex;
     margin: 20px 40px;
 }
-.profile-form-container{
-    border: 1px solid black;
+
+.profile-form-container {
+    border: 2px solid black;
+    border-radius: 30px;
+}
+.profile-form-container label{
+    font-size: 20px;
+    font-weight: 600;
+}
+.profile-form-header{
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 30px 30px 0 0;
+    text-align: center;
+    
+}
+.profile-form-item {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 25px;
 }
 
-.profile-form-item{
-   margin-bottom: 10px; 
-   width: 100%;
-   height: 25px;
-}
-
-.profile-form-container input{
+.profile-form-container input {
     width: 300px;
 }
-.profile-trainings{
+.profile-button{
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    text-align: center;
+}
+.profile-trainings {
     /* margin-top: 20px; */
-    margin-left:20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
     border: 2px solid black;
     border-radius: 20px;
+}
+
+.profile-trainings-container {
     width: 100%;
 }
 
-.profile-trainings h2{
+.profile-trainings h2 {
     text-align: center;
     background: #040D12;
     color: white;
     border-radius: 20px 20px 0 0;
 }
 
-.trainings-container{
+.trainings-container {
     display: flex;
     margin: 20px 0;
 }
 
-.trainings-container .training{
+.trainings-container .training {
     margin-right: 10px;
 }
+.training-session{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 20px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 30px;
+    height: 100px;
+}
+.training-session-left-block{
+    display: flex;
+    margin-left: 20px;
+}
+.radio-settings{
+    margin-right: 10px;
+}
+.button-save-session{
+    padding: 0 5px;
+    border-radius: 30px;
+    height: 30px;
 
-.user-training-sessions{
-    border: 1px solid black;
+}
+.user-training-sessions {
+    margin-left: 20px;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-radius: 30px;
+}
+
+.user-sessions {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+}
+.user-sessions-left-box{
+    width: 100%;
+}
+.id-session {
+    margin-bottom: 5px;
+}
+
+.user-training-sessions h2 {
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 30px 30px 0 0;
+}
+
+.user-training-item {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.user-training-item-reps {
+    margin: 0 15px;
+}
+
+.user-training-item-names {
+    width: 20%;
+}
+
+.weight{
+    border-top: 1px solid black;
+}
+
+.delete-session-button{
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 70px;
+}
+
+.user-training-sessions-create {
+    border-radius: 0 0 30px 30px;
+    width: 100%;
+    height: 30px;
+}
+
+.user-training-sessions-delete {
+    display: flex;
+    margin-top: 5px;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    width: 130px;
 }

@@ -36,7 +36,6 @@ export class DataTrainingService {
       }
 
     })
-    subscription.unsubscribe();
   }
   private saveDataToLocalStorage(trainings: Training[]) {
     console.log(this.trainings.getValue().toString() + " " + trainings)

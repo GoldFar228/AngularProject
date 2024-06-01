@@ -1,20 +1,31 @@
 <div class="profile-container">
     <form [formGroup]="form">
         <div class="profile-form-container">
+            <h2 class="profile-form-header">Your profile data</h2>
+
+            <label>age</label>
             <input class="profile-form-item" type="text" placeholder="age" formControlName="age"> <br>
             <app-validator-msg [control]="form.controls['age']"
-                [errorMessage]="'age must not be empty'"></app-validator-msg>
+                [errorMessage]="'age must not be empty'">
+            </app-validator-msg>
+
+            <label>gender</label>
             <select class="profile-form-item" formControlName="gender">
                 <option *ngFor="let g of genders" [value]="g.value">{{g.str}}</option>
             </select> <br>
+
+            <label>height</label>
             <input class="profile-form-item" type="text" placeholder="height" formControlName="height"> <br>
             <app-validator-msg [control]="form.controls['height']"
-                [errorMessage]="'height must not be empty'"></app-validator-msg>
+                [errorMessage]="'height must not be empty'">
+            </app-validator-msg>
+            
+            <label>weight</label>
             <input class="profile-form-item" type="text" placeholder="weight" formControlName="weight"> <br>
             <app-validator-msg [control]="form.controls['weight']"
                 [errorMessage]="'weight must not be empty'"></app-validator-msg>
         </div>
-        <button type="submit" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button><br>
+        <button type="submit" class="button profile-button" [disabled]="form.invalid" (click)="onSubmit()">Save profile data</button><br>
 
     </form>
     <div class="profile-trainings-container">
@@ -28,39 +39,49 @@
         </div>
 
         <div class="training-session" *ngIf="trainingSessionVisible">
-            <div>
-                <input type="radio" value="freeWeight" name="training-rb" (click)="changeIsClicked(true)">
-                <label>freeWeight</label>
+            <div class="training-session-left-block">
+                <div class="radio-settings">
+                    <div>
+                        <input type="radio" value="freeWeight" name="training-rb" (click)="changeIsClicked(true)">
+                        <label>freeWeight</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="bodyWeight" name="training-rb" (click)="changeIsClicked(false)" checked>
+                        <label>bodyWeight</label>
+                    </div>
+                </div>
+                <ng-container *ngIf="isFreeWeight; else elseBlock">
+                    <app-training-session [styleTraining]="isFreeWeight"
+                        [sessionId]="sessionId"></app-training-session>
+                </ng-container>
+                <ng-template #elseBlock>
+                    <app-training-session [styleTraining]="isFreeWeight"
+                        [sessionId]="sessionId"></app-training-session>
+                </ng-template>
             </div>
-            <div>
-                <input type="radio" value="bodyWeight" name="training-rb" (click)="changeIsClicked(false)" checked>
-                <label>bodyWeight</label>
-            </div>
-            <ng-container *ngIf="isFreeWeight; else elseBlock">
-                <app-training-session [styleTraining]="isFreeWeight" [setsQuantity]="1" [sessionId]="sessionId"></app-training-session>
-            </ng-container>
-            <ng-template #elseBlock>
-                <app-training-session [styleTraining]="isFreeWeight" [setsQuantity]="1" [sessionId]="sessionId"></app-training-session>
-            </ng-template>
-            <button (click)="saveTrainingSession()">save training session</button>
+            <button class="button button-save-session" (click)="saveTrainingSession()">save training session</button>
         </div>
 
         <div class="user-training-sessions">
             <h2>Your training sessions</h2>
             <hr>
-            <div *ngFor="let t of session">
-                <div>
-                    {{t.name}}
+            <div class="user-sessions" *ngFor="let s of session">
+                <div class="user-sessions-left-box">
+                    <div class="id-session">Your session: {{s.id}}</div>
+                    <div class="user-training-item" *ngFor="let t of s.trainingSessions">
+                        <div class="user-training-item-names">{{t.name}}: </div>
+                        <div class="user-training-item-reps" *ngFor="let i = index; let rep of t.reps">
+                            <div>{{rep}} reps</div>
+                            <div *ngIf="t.weight && t.weight[i]">
+                                <div class="weight">{{t.weight[i]}}kg </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {{t.weight}}
-                </div>
-                <div>
-                    {{t.reps}}
-                </div>
+                <button class="delete-session-button button" (click)="deleteCurrentSession(s)">delete this session</button>
             </div>
+            <button class="user-training-sessions-create button" (click)="show()">CREATE NEW SESSION</button>
         </div>
-        <button (click)="show()">CREATE NEW SESSION</button>
+        <button class="user-training-sessions-delete button" (click)="delete()">Delete all sessions</button>
     </div>
 </div>
-<button>create training session</button>

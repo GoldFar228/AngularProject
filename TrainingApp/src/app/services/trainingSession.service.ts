@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../models/Training.model';
 import { TrainingSession } from '../models/TrainingSession.model';
-import { BehaviorSubject, Subject, take } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { StoredTrainingSession } from '../models/StoredTrainingSession.model';
 
 @Injectable({
@@ -28,14 +27,9 @@ export class TrainingSessionService {
 
 
   public addItem(newTraining: TrainingSession): void {
-    // localStorage.removeItem('')
-    // this.trainingSessions.next(null);
-    console.log(this.trainingSessions, 'current training sessions')
     const subscription = this.trainingSessions.pipe(take(1)).subscribe(value => {
-      console.log('Текущее значение:', value);
 
-      const currentTrainings = this.trainingSessions.getValue();
-      console.log('current training sessions', currentTrainings)
+      const currentTrainings = this.trainingSessions.getValue() || [];
       const updatedTrainings = [...currentTrainings, newTraining];
       this.trainingSessions.next(updatedTrainings);
       this.saveDataToLocalStorage(updatedTrainings);
@@ -45,20 +39,35 @@ export class TrainingSessionService {
     localStorage.setItem('', JSON.stringify(trainingSessions));
   }
 
-  public addTrainingSessionToStoredSession(storedSessionId: number, newTrainingSession: StoredTrainingSession): void {
-    console.log(newTrainingSession)
-    this.storedTrainingSessions.pipe(take(1)).subscribe(value => {
-      // this.storedTrainingSessions.next(null);
-      console.log('Я смог это сделать', value)
-      const storedSessions = this.storedTrainingSessions.getValue();
-      console.log('Я смог', storedSessions)
-      let updatedStoredSession = [...storedSessions, newTrainingSession];
-      console.log(updatedStoredSession)
-      this.storedTrainingSessions.next(updatedStoredSession)
-      // updatedStoredSession.push(newTrainingSession);
-      // this.storedTrainingSessions.next(updatedStoredSession);
-      localStorage.setItem('userTrainingSession', JSON.stringify(updatedStoredSession));
+  // public addTrainingSessionToStoredSession(newTrainingSession: StoredTrainingSession): void {
+  //   console.log(newTrainingSession)
+  //   const storedSessions = JSON.parse(localStorage.getItem('userTrainingSession')) || [];
+  //   this.storedTrainingSessions = new BehaviorSubject<StoredTrainingSession[]>(storedSessions);
+  //   this.storedTrainingSessions.pipe(take(1)).subscribe(value => {
+  //     const storedSessions = value;
+  //     let updatedStoredSession = [...value, newTrainingSession];
+  //     this.storedTrainingSessions.next(updatedStoredSession);
+  //     localStorage.setItem('userTrainingSession', JSON.stringify(updatedStoredSession));
+  //   });
+  // }
 
-    });
-  }
+  // public removeAllItems(){
+  //   localStorage.removeItem('');
+  //   localStorage.removeItem('userTrainingSession')
+  //   this.trainingSessions.next(null);
+  //   this.storedTrainingSessions.next(null);
+  // }
+  // public removeItem(session: StoredTrainingSession){
+  
+  //   const storedData = JSON.parse(localStorage.getItem('userTrainingSession'));
+  //   const objectIdToDelete = session.id;
+  //   const indexToDelete = storedData.findIndex(obj => obj.id === objectIdToDelete);
+
+  //   if (indexToDelete !== -1) {
+  //     storedData.splice(indexToDelete, 1);
+  //     localStorage.setItem('userTrainingSession', JSON.stringify(storedData));
+  //   } else {
+  //     console.log('Объект с указанным идентификатором не найден.');
+  //   }
+  // }
 }
