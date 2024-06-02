@@ -1,24 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfileData } from '../../models/profile-data.model';
+import { ProfileData } from '../../models/ProfileData.model';
 import { ValidatorMsgComponent } from "../../reusable/validator-msg/validator-msg.component";
-import { Training } from '../../models/training.model';
+import { Training } from '../../models/Training.model';
 import { TrainingItemComponent } from "../trainings/training-item/training-item.component";
 import { IfDirective } from '../../CustomDirectives/profileIf.directive';
 import { TrainingSessionComponent } from "./training-session/training-session.component";
-import { TrainingSession } from '../../models/training-session.model';
-import { StoredTrainingSession } from '../../models/stored-training-session.model';
+import { TrainingSession } from '../../models/TrainingSession.model';
+import { StoredTrainingSession } from '../../models/StoredTrainingSession.model';
 import { TrainingSessionService } from '../../services/trainingSession.service';
 import { ProfileService } from '../../services/profile.service';
-import { DescriptionComponent } from "../trainings/description/description.component";
 
 @Component({
-    selector: 'app-profile',
-    standalone: true,
-    templateUrl: './profile.component.html',
-    styleUrl: './profile.component.css',
-    imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent, DescriptionComponent]
+  selector: 'app-profile',
+  standalone: true,
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css',
+  imports: [CommonModule, ReactiveFormsModule, ValidatorMsgComponent, TrainingItemComponent, IfDirective, TrainingSessionComponent]
 })
 export class ProfileComponent implements OnInit {
 
@@ -97,13 +96,11 @@ export class ProfileComponent implements OnInit {
   }
 
   session: StoredTrainingSession[];
-  sessionService = inject(ProfileService);
-
-  session$ = this.sessionService.getStoredTrainingSessions;
   trainingForSession: TrainingSession[];
   setSessions() {
     this.session = JSON.parse(localStorage.getItem('userTrainingSession'));
     this.trainingForSession = JSON.parse(localStorage.getItem(''));
+    console.log(this.session);
   }
 
   trainingSessionService = inject(TrainingSessionService);

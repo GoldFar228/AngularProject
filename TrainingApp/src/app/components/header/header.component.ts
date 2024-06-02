@@ -18,19 +18,17 @@ export class HeaderComponent {
     {value: "Diets", path: "/diets"}, 
   ];
 
-  public header$ = of(this.header);
+  header$ = of(this.header);
   
-  public authService = inject(AuthService)
+  authService = inject(AuthService)
   
-
-  public redirect(e: Event): void{
-    if((e.target as HTMLInputElement).textContent === "Logout")
-      document.location.href="/registration";
-    else{
-      document.location.href="/home";
-    }
-  }
-
+  // public redirect(e: any): void{
+  //   if(e.target.textContent === "Logout")
+  //     document.location.href="/registration";
+  //   else{
+  //     document.location.href="/home";
+  //   }
+  // }
 
   @Input()
   logout: Function;

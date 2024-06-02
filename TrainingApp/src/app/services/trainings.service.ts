@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../models/training.model';
-
+import { Training } from '../models/Training.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingService {
-  private _trainings: Training[] = 
+  private trainings: Training[] = 
   [{
     header: "Increase your bench press",
     img: "assets/man-barbell-bench-press.png",
@@ -28,17 +27,15 @@ export class TrainingService {
     sequence_number: 1
   }];
 
-  constructor() { 
-    
-  }
+  constructor() { }
 
   getData(): Training[] {
-    return this._trainings;
+    return this.trainings;
   }
   addItem(newTraining: Training): void{
-    this._trainings.push(newTraining);
+    this.trainings.push(newTraining);
   }
   getTrainingByHeader(header: string): Training{
-    return this._trainings.find(t => t.header === header)
+    return this.trainings.find(t => t.header === header)
   }
 }

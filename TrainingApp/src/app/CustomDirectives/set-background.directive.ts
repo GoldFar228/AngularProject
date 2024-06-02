@@ -5,12 +5,9 @@ import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
   selector: '[appSetBackground]',
 })
 export class SetBackgroundDirective implements AfterViewInit{
-  @Input() 
-  public color: string;
+  @Input() color: string;
 
-  constructor(private el: ElementRef) { 
-    
-  }
+  constructor(private el: ElementRef) { }
 
   ngAfterViewInit(): void{
     this.el.nativeElement.style.backgroundColor = this.color;

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import {  Component, EventEmitter, HostListener, Input, OnChanges, Output, inject } from '@angular/core';
-import { TrainingDescription } from '../../../models/training-description.model';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, inject } from '@angular/core';
+import { Hash } from 'crypto';
+import { TrainingDescription } from '../../../models/TrainingDescription.model';
 import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
-import { Training } from '../../../models/training.model';
+import { Training } from '../../../models/Training.model';
 import { DataTrainingService } from '../../../services/dataTrainings.service';
 
 @Component({
@@ -14,39 +15,42 @@ import { DataTrainingService } from '../../../services/dataTrainings.service';
   styleUrl: './description.component.css'
 })
 export class DescriptionComponent implements OnChanges {
-  public descriptionService = inject(DescriptionService);
-  public trainingService = inject(TrainingService);
+  descriptionService = inject(DescriptionService);
+  trainingService = inject(TrainingService);
 
-  public trainings: Training[] = this.trainingService.getData();
-  public descriptions: TrainingDescription[] = this.descriptionService.getData();
+  trainings: Training[] = this.trainingService.getData();
+  descriptions: TrainingDescription[] = this.descriptionService.getData();
 
   @Input() name!: string;
 
   @Input() isVisible: boolean;
   @Output() isVisibleEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-  public imgPath: string = '';
+  imgPath: string = '';
 
   ngOnChanges() {
+    console.log(this.trainingService.getTrainingByHeader(this.name).img);
     this.imgPath = this.trainingService.getTrainingByHeader(this.name).img;
   }
 
-  public trainingsUserChoseJSON?: string = localStorage.getItem('trainingsUserChose');
+  trainingsUserChoseJSON?: string = localStorage.getItem('trainingsUserChose');
 
-  public trainingsUserChose: Training[] = JSON.parse(this.trainingsUserChoseJSON);
+  trainingsUserChose: Training[] = JSON.parse(this.trainingsUserChoseJSON);
 
-  public dataTrainingsService = inject(DataTrainingService)
-  public addTraining(): void {
+  dataTrainingsService = inject(DataTrainingService)
+  addTraining() {
     const newTraining = this.trainingService.getTrainingByHeader(this.name);
+    console.log(newTraining);
     this.dataTrainingsService.addItem(newTraining);
+    console.log(localStorage.getItem('trainingsUserChose'));
   }
 
-  public exit(): void {
+  exit() {
     this.isVisible = false;
     this.isVisibleEmitter.emit(this.isVisible);
   }
 
   @HostListener('document:click', ['$event'])
-  public onClick(event: MouseEvent) {
+  onClick(event: MouseEvent) {
     if ((event.target as HTMLElement).className === 'description-container') {
       this.exit()
     }

@@ -10,13 +10,13 @@ import { Subject, interval, take, takeUntil } from "rxjs";
 })
 
 export class AuthService {
-    public currentUserSig = signal<UserInterface | undefined | null>(undefined);
+    currentUserSig = signal<UserInterface | undefined | null>(undefined);
 
-    public http = inject(HttpClient);
-    public router = inject(Router);
-    public unsibscribe$ = new Subject<void>;
+    http = inject(HttpClient);
+    router = inject(Router);
+    unsibscribe$ = new Subject<void>;
 
-    public loginAuth(form: FormGroup): void {
+    loginAuth(form: FormGroup): void {
         this.http.post<{ user: UserInterface }>('https://api.realworld.io/api/users/login', {
             user: form.getRawValue(),
         }
@@ -27,7 +27,7 @@ export class AuthService {
         });
     }
 
-    public auth(): void {
+    auth(): void {
         this.http.get<{ user: UserInterface }>('https://api.realworld.io/api/user')
             .pipe(takeUntil(this.unsibscribe$))
             .subscribe({
@@ -40,7 +40,7 @@ export class AuthService {
             });
     }
 
-    public registration(form: FormGroup): void {
+    registration(form: FormGroup): void {
         this.http.post<{ user: UserInterface }>('https://api.realworld.io/api/users', { user: form.getRawValue(), }
         )
             .pipe(takeUntil(this.unsibscribe$))
@@ -50,11 +50,11 @@ export class AuthService {
                 this.router.navigateByUrl('/home');
             });
     }
-    public login(): void {
+    login(): void {
         document.location.href = "/";
     }
 
-    public logout(): void {
+    logout(): void {
         localStorage.setItem('token', '');
         this.currentUserSig.set(null);
     }

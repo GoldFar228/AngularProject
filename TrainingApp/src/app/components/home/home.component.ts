@@ -10,4 +10,5 @@ import { FooterComponent } from "./footer/footer.component";
     imports: [HeaderComponent, FooterComponent]
 })
 export class HomeComponent {
+  public priorities: string[] = ["Become lean"];
 }

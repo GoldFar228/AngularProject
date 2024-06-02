@@ -12,20 +12,20 @@ import { ValidatorMsgComponent } from '../../reusable/validator-msg/validator-ms
   selector: 'app-authorization',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent],
-  templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css'
+  templateUrl: './authorization.component.html',
+  styleUrl: './authorization.component.css'
 })
-export class RegistrationComponent {
+export class AuthorizationComponent {
   public redirect(): void{
     document.location.href="/home"
   }
 
-  public fb = inject(FormBuilder);
-  public http = inject(HttpClient);
-  public authService = inject(AuthService);
-  public router = inject(Router);
+  fb = inject(FormBuilder);
+  http = inject(HttpClient);
+  authService = inject(AuthService);
+  router = inject(Router);
 
-  public form = this.fb.nonNullable.group({
+  form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]

@@ -1,12 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { TrainingsComponent } from './components/trainings/trainings.component';
-import { DietsComponent } from './components/diets/diets.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { AuthGuard } from './guards/authGuard.guard';
-
 import { AuthGuard } from './guards/authGuard.guard';
 
 export const routes: Routes = [
@@ -20,7 +12,7 @@ export const routes: Routes = [
 
     {path: 'registration', loadComponent: () =>
         import('./components/authorization/authorization.component').then(
-            (m) => m.AuthorizationComponent)},
+            (m) => m.AuthorizationComponent), canActivate: [AuthGuard]},
 
     {path: 'trainings', loadComponent: () =>
         import('./components/trainings/trainings.component').then(
