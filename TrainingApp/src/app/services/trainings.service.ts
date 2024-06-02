@@ -14,7 +14,8 @@ export class TrainingService {
     tag1Img: "assets/get-stronger.jpg",
     tag2: "30 minutes",
     tag2Img: "assets/30-mins.jpg",
-    des: false
+    des: false,
+    sequence_number: 0
   },
   {
     header: "Chest growth in the gym",
@@ -23,7 +24,8 @@ export class TrainingService {
     tag1Img: "assets/gain-weight.jpg",
     tag2: "30 minutes",
     tag2Img: "assets/30-mins.jpg",
-    des: false
+    des: false,
+    sequence_number: 1
   }];
 
   constructor() { 

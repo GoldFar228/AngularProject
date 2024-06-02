@@ -2,6 +2,7 @@
 .trainings{
     display: flex;
     margin: 20px auto 15px 30px;
+    width: 600px;
 }
 .trainings.descriptions{
     display: flex;
@@ -25,4 +26,18 @@ h2{
     padding-left: 20px;
     background: rgb(214, 214, 214);
     border-bottom: 2px solid black;
+.trainings1{
+    position: relative;
+    display: flex;
+    width: 400px;
+    left: 750px;
+    bottom: 500px;
+}
+.recomend{
+    position: relative;
+    display: flex;
+    margin-right: auto;
+    height: 25px;
+    left: 760px;
+    bottom: 150px;
 }

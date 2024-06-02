@@ -1,6 +1,16 @@
+
 <div class="training-page-container">
     <div class="filters">
         <app-filters (searchTextChange)="setSearchString($event)"></app-filters>
+    </div>
+<div class="trainings">
+    <div class="training" *ngFor="let t of trainings">
+        <app-training-item *ngIf="searchString === '' || t.header.toLowerCase().includes(searchString)" [training]="t" (click)="handler(t)">
+        </app-training-item>
+        <div>
+          <a routerLink="/detail/{{t.sequence_number}}">Details</a>
+          <router-outlet></router-outlet>
+        </div>
     </div>
 
     <div class="trainings-container">
@@ -19,3 +29,8 @@
     </div>
 </div>
 <app-index-mass></app-index-mass>
+<button class="recomend"(click)="show()">Recommended workouts</button>
+<div class="trainings1" *ngFor="let t of trainings" >
+    <app-training-item *ngIf="t.tag1.toLocaleLowerCase() === recomend() && showBlock"  [training]="t"></app-training-item>
+</div>
+

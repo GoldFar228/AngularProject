@@ -1,3 +1,4 @@
+
 import { Component, EventEmitter, HostListener, InjectionToken, OnInit, Output, inject } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,8 @@ import { DescriptionComponent } from './description/description.component';
 import { IndexMassComponent } from './index-mass/index-mass.component';
 import { MY_TOKEN, myTokenFactory } from '../../functions/dependecy-injection.function';
 
+import { IndexMassPipe } from "../../Pipes/im.pipe";
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-trainings',
@@ -47,5 +50,16 @@ export class TrainingsComponent implements OnInit{
   }
   public setIsVisible(e: boolean): void{
     this.chosenTraining.des = e
+  }
+  @ViewChild(IndexMassComponent) infoComponent: IndexMassComponent | undefined;
+
+  recomend(): string {
+    if(this.infoComponent?.index.weight/(Math.pow(this.infoComponent?.index.height/100, 2)) <= 23){
+      return "gain weight"
+    }
+    return "loose weight"
+  }
+  show(): void{
+    this.showBlock = !this.showBlock
   }
 }

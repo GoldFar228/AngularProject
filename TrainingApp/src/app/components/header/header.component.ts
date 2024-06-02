@@ -22,6 +22,7 @@ export class HeaderComponent {
   
   public authService = inject(AuthService)
   
+
   public redirect(e: Event): void{
     if((e.target as HTMLInputElement).textContent === "Logout")
       document.location.href="/registration";
@@ -29,6 +30,7 @@ export class HeaderComponent {
       document.location.href="/home";
     }
   }
+
 
   @Input()
   logout: Function;
