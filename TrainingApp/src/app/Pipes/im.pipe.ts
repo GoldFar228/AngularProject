@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Index } from '../models/indexMass.model';
+import { Index } from '../models/index-mass.model';
 @Pipe({
     name: "indexmass", standalone: true
 })
 export class IndexMassPipe implements PipeTransform {
 
-    transform(value: Index) {
+    public transform(value: Index) {
         var result = value.weight/(Math.pow(value.height/100, 2))
         if (Number.isNaN(result)){
             return ""

@@ -12,6 +12,7 @@
             <app-validator-msg [control]="form.controls['weight']" [errorMessage]="'weight must not be empty'"></app-validator-msg>
         </div>
         <button type="submit" [disabled]="form.invalid">search</button>
+        <button type="submit" [disabled]="form.invalid" (click)="throwError()">Throw an error</button>
     </form>
         <div class="calculated-weight-container">
             <p class="calculated-weight-item">to lose weight you need to eat {{loseWeight}}</p>

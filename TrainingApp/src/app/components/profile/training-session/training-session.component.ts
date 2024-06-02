@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren, inject } from '@angular/core';
 import { TrainingSessionService } from '../../../services/trainingSession.service';
-import { TrainingSession } from '../../../models/TrainingSession.model';
-import { StoredTrainingSession } from '../../../models/StoredTrainingSession.model';
+import { TrainingSession } from '../../../models/training-session.model';
+import { StoredTrainingSession } from '../../../models/stored-training-session.model';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,39 +14,39 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TrainingSessionComponent{
   @Input()
-  styleTraining: boolean;
+  public styleTraining: boolean;
 
 
-  trainingSession: TrainingSession;
-  trainingSessionService = inject(TrainingSessionService);
-  storedTrainingSession = new StoredTrainingSession;
+  public trainingSession: TrainingSession;
+  public trainingSessionService = inject(TrainingSessionService);
+  public storedTrainingSession = new StoredTrainingSession;
 
-  inputValue: number;
-  generatedInputs: number[] = [];
-  outputString: string = '';
+  public inputValue: number;
+  public generatedInputs: number[] = [];
+  public outputString: string = '';
 
 
   @ViewChildren('reps')
-  reps: QueryList<ElementRef>;
+  public reps: QueryList<ElementRef>;
   @ViewChildren('weights')
-  weights: QueryList<ElementRef>;
+  public weights: QueryList<ElementRef>;
   @ViewChild('exerciseName')
-  exerciseName;
+  public exerciseName;
 
-  trainingsSessionsUserHasJSON?: string = localStorage.getItem('userTrainingSession');
+  public trainingsSessionsUserHasJSON?: string = localStorage.getItem('userTrainingSession');
 
-  trainingsSessionsUserHas: TrainingSession[] = JSON.parse(this.trainingsSessionsUserHasJSON);
+  public trainingsSessionsUserHas: TrainingSession[] = JSON.parse(this.trainingsSessionsUserHasJSON);
 
   @Input()
   sessionId: number;
 
-  generateSession(setsQuantity) {
+  public generateSession(setsQuantity: number):void {
     for (let s = 0; s < setsQuantity; s++) {
       this.generatedInputs.push(s);
     }
   }
 
-  getData() {
+  public getData(): void {
     let trainingSession = this.trainingSessionService.createNewObject()
     trainingSession.name = this.exerciseName.nativeElement.value
     trainingSession.reps = [];
@@ -64,7 +64,7 @@ export class TrainingSessionComponent{
   }
   inputs = [];
 
-  generateInputs() {
+  public generateInputs(): void {
     this.inputs.push(this.inputs.length + 1);
   }
 }

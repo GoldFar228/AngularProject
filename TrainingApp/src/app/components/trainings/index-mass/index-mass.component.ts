@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { IndexMassPipe } from '../../../Pipes/im.pipe';
-import { Index } from '../../../models/indexMass.model';
+import { Index } from '../../../models/index-mass.model';
 @Component({
   selector: 'app-index-mass',
   standalone: true,
@@ -11,10 +11,9 @@ import { Index } from '../../../models/indexMass.model';
 })
 
 export class IndexMassComponent {
-
-  index: Index = {weight: NaN, height: NaN}
-  
-  logIndex(weight: NgModel, height: NgModel){
+  public number: number = 0;
+  public index: Index = {weight: NaN, height: NaN}
+  public logIndex(weight: NgModel, height: NgModel): void{
     this.index = {weight: weight.model, height: height.model}
   }
 }

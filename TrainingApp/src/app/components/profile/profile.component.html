@@ -65,7 +65,7 @@
         <div class="user-training-sessions">
             <h2>Your training sessions</h2>
             <hr>
-            <div class="user-sessions" *ngFor="let s of session">
+            <div class="user-sessions" *ngFor="let s of session$ | async">
                 <div class="user-sessions-left-box">
                     <div class="id-session">Your session: {{s.id}}</div>
                     <div class="user-training-item" *ngFor="let t of s.trainingSessions">

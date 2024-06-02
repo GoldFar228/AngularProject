@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Training } from '../../../models/Training.model';
+import { Component, Input } from '@angular/core';
+import { Training } from '../../../models/training.model';
 
 @Component({
   selector: 'app-training-item',

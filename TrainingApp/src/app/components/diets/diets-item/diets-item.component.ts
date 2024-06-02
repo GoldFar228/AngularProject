@@ -11,5 +11,5 @@ import { Input } from '@angular/core';
 })
 export class DietsItemComponent {
   @Input()
-  diet: { header: string; img: string; description: string; };
+  public diet: { header: string; img: string; description: string; };
 }

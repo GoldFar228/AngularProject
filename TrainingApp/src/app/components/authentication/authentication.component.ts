@@ -17,12 +17,11 @@ import { ValidatorMsgComponent } from '../../reusable/validator-msg/validator-ms
     imports: [ReactiveFormsModule, CommonModule, RouterModule, ValidatorMsgComponent, SetBackgroundDirective]
 })
 export class AuthenticationComponent implements OnDestroy{
-  // loader$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  fb = inject(FormBuilder);
-  http = inject(HttpClient);
-  authService = inject(AuthService);
-  router = inject(Router);
-  form = this.fb.nonNullable.group({
+  public fb = inject(FormBuilder);
+  public http = inject(HttpClient);
+  public authService = inject(AuthService);
+  public router = inject(Router);
+  public form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
