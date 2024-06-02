@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren, inject } from '@angular/core';
 import { TrainingSessionService } from '../../../services/trainingSession.service';
-import { TrainingSession } from '../../../models/TrainingSession.model';
-import { StoredTrainingSession } from '../../../models/StoredTrainingSession.model';
+import { TrainingSession } from '../../../models/training-session.model';
+import { StoredTrainingSession } from '../../../models/stored-training-session.model';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({

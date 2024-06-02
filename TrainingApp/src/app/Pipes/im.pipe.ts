@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Index } from '../models/indexMass.model';
+import { Index } from '../models/index-mass.model';
 @Pipe({
     name: "indexmass", standalone: true
 })

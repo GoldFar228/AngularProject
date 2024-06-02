@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../models/Training.model';
+import { Training } from '../models/training.model';
 import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 
 @Injectable({

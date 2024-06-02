@@ -1,4 +1,4 @@
-import { TrainingSession } from "./TrainingSession.model";
+import { TrainingSession } from "./training-session.model";
 
 export class StoredTrainingSession {
     public id: number = 0;

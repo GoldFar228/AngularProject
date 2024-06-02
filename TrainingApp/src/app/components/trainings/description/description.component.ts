@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {  Component, EventEmitter, HostListener, Input, OnChanges, Output, inject } from '@angular/core';
-import { TrainingDescription } from '../../../models/TrainingDescription.model';
+import { TrainingDescription } from '../../../models/training-description.model';
 import { DescriptionService } from '../../../services/description.service';
 import { TrainingService } from '../../../services/trainings.service';
-import { Training } from '../../../models/Training.model';
+import { Training } from '../../../models/training.model';
 import { DataTrainingService } from '../../../services/dataTrainings.service';
 
 @Component({

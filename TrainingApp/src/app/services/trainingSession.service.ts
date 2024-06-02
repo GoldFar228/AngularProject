@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { TrainingSession } from '../models/TrainingSession.model';
+import { TrainingSession } from '../models/training-session.model';
 import { BehaviorSubject, take } from 'rxjs';
-import { StoredTrainingSession } from '../models/StoredTrainingSession.model';
+import { StoredTrainingSession } from '../models/stored-training-session.model';
 
 @Injectable({
   providedIn: 'root'

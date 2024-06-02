@@ -1,5 +1,5 @@
 import { Observable, of } from "rxjs";
-import { Training } from "../models/Training.model";
+import { Training } from "../models/training.model";
 import { Injectable } from "@angular/core";
 
 @Injectable()
