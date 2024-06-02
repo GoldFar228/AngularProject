@@ -1,13 +1,18 @@
-import { TrainingSession } from "./training-session.model";
+import { TrainingSession } from "./TrainingSession.model";
 
 export class StoredTrainingSession {
-    public id: number = 0;
-    public trainingSessions: TrainingSession[] = [];
+    id: number = 0;
+    trainingSessions: TrainingSession[] = [];
 
     constructor() {
         this.id = this.generateId();
     }
-    public generateId() {
+
+    getId() {
+        return this.id
+    }
+
+    generateId() {
         const userTrainingSessions = JSON.parse(localStorage.getItem('userTrainingSession')) || [];
         let ghostId = userTrainingSessions.reduce((max, obj) => obj.id > max.id ? obj : max, userTrainingSessions[0]);
         if(ghostId === undefined){

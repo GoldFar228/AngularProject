@@ -6,14 +6,14 @@ import {Directive, ElementRef, Input, TemplateRef, ViewContainerRef, inject} fro
 })
 export class IfDirective{
 
-  constructor(private _view: TemplateRef<ElementRef>, private _template: ViewContainerRef){}
+  constructor(private view: TemplateRef<any>, private template: ViewContainerRef){}
 
   @Input() set profileIf(condition: boolean){
     if(condition){
-      this._template.createEmbeddedView(this._view);
+      this.template.createEmbeddedView(this.view);
     }
     else{
-      this._template.clear();
+      this.template.clear();
     }
   };
 

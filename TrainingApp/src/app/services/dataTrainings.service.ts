@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../models/training.model';
+import { Training } from '../models/Training.model';
 import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 
 @Injectable({
@@ -19,7 +19,13 @@ export class DataTrainingService {
     return this.trainings.asObservable();
   }
   public addItem(newTraining: Training): void {
+    console.log(this.trainings);
+    // localStorage.removeItem('trainingsUserChose');
     const subscription = this.trainings.pipe(take(1)).subscribe(value => {
+
+      console.log('Текущее значение:', value);
+
+      // localStorage.removeItem('trainingsUserChose')
       const currentTrainings = this.trainings.getValue();
       if (currentTrainings.some(training => training.header === newTraining.header)) {
         console.log('Training already exists');
