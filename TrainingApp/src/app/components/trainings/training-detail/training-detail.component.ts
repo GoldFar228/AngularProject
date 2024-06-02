@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DetailService } from '../../../services/detail.servise';
-import { TrainingDetail } from '../../../models/TrainingDetail';
+import { TrainingDetail } from '../../../models/training-detail.model';
 
 @Component({
   selector: 'app-training-detail',

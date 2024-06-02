@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, HostListener, InjectionToken, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, HostListener, InjectionToken, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
@@ -30,6 +30,7 @@ export class TrainingsComponent implements OnInit{
   public chosenTraining: Training;
   public isVisible: boolean;
   private _trainingService = inject(TrainingService);
+  public showBlock: boolean = false;
   //------------------------------------------------//
   public myToken: string = inject(MY_TOKEN)
   //------------------------------------------------//

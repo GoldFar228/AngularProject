@@ -7,7 +7,6 @@ import { DietsComponent } from './components/diets/diets.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/authGuard.guard';
 
-import { AuthGuard } from './guards/authGuard.guard';
 
 export const routes: Routes = [
     {path: '', loadComponent: () =>
@@ -19,8 +18,8 @@ export const routes: Routes = [
             (m) => m.HomeComponent), canActivate: [AuthGuard]},
 
     {path: 'registration', loadComponent: () =>
-        import('./components/authorization/authorization.component').then(
-            (m) => m.AuthorizationComponent)},
+        import('./components/registration/registration.component').then(
+            (m) => m.RegistrationComponent)},
 
     {path: 'trainings', loadComponent: () =>
         import('./components/trainings/trainings.component').then(
