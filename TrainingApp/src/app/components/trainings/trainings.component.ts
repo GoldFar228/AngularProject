@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 
 import { Component, EventEmitter, HostListener, InjectionToken, OnInit, Output, inject } from '@angular/core';
+=======
+import { Component, OnInit, inject } from '@angular/core';
+>>>>>>> Stashed changes
 import { TrainingItemComponent } from "./training-item/training-item.component";
 import { CommonModule } from '@angular/common';
 import { FiltersComponent } from "./filters/filters.component";
@@ -30,9 +34,8 @@ export class TrainingsComponent implements OnInit{
   public chosenTraining: Training;
   public isVisible: boolean;
   private _trainingService = inject(TrainingService);
-  //------------------------------------------------//
+  
   public myToken: string = inject(MY_TOKEN)
-  //------------------------------------------------//
 
   public searchString: string = '';
 
