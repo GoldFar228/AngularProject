@@ -14,6 +14,7 @@ body{
     background: #DBD8E3;
     font-size: 16px;
     border-bottom: 2px solid black;
+    cursor: pointer;
 }
 input{
     background-color: #DBD8E3;
